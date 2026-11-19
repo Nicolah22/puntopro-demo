@@ -18,6 +18,8 @@ jobs:
           distribution: temurin
           java-version: 17
       - run: npm install
+      - name: Preparar www
+        run: mkdir -p www && cp index.html manifest.webmanifest *.png www/
       - run: npx cap add android
       - run: npx cap sync android
       - name: Bloquear horizontal
