@@ -11847,20 +11847,46 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
       }
     }
     db.ventas.sort((a,b)=>a.ts-b.ts);
+    // Algunas ventas con propina, con descuento y canceladas para mostrar esas funciones
+    (function(){
+      const hoy=db.ventas.filter(v=>new Date(v.ts).toDateString()===new Date().toDateString());
+      if(hoy[0]){const v=hoy[0];v.propina=Math.round(v.total*0.1/100)*100;v.total+=v.propina;}
+      if(hoy[1]){const v=hoy[1];v.descuento=Math.round(v.total*0.1/100)*100;v.total-=v.descuento;}
+      const ayer=db.ventas.filter(v=>new Date(v.ts).toDateString()===new Date(Date.now()-86400000).toDateString());
+      [hoy[2],ayer[0]].forEach(v=>{if(v){v.cancelada=true;v.estado='Cancelada';}});
+    })();
+    // Clientes con fiados pendientes
+    db.clientes=[{id:1,nombre:'Doña Marta',telefono:'3001112233',direccion:'Calle 10 #5-20',calificacion:''},
+      {id:2,nombre:'Carlos Gómez',telefono:'3104445566',direccion:'',calificacion:''},
+      {id:3,nombre:'Tienda La Esquina',telefono:'3207778899',direccion:'Carrera 7 #12-30',calificacion:''},
+      {id:4,nombre:'Luisa Pérez',telefono:'3159990011',direccion:'',calificacion:''}];
+    db.nextCId=5;
+    const fi=(cid,ids,dias)=>{const items=ids.map(i=>{const p=db.productos.find(x=>x.id===i);return {id:p.id,nombre:p.nombre,codigo:p.codigo,precio:p.precio,qty:2,categoria:p.categoria};});
+      return {id:db.nextFId++,clienteId:cid,items,total:items.reduce((t,x)=>t+x.precio*x.qty,0),tsFiado:Date.now()-dias*86400000,tsPago:null,estado:'pendiente'};};
+    db.fiados=[fi(1,[1,5],5),fi(2,[12,14],3),fi(3,[16,9,15],2)];
+    db.abonos=[];
+    // Proveedores con un pago y una deuda
+    db.proveedores=[{id:1,nombre:'Distribuidora Andina',tel:'6012345678',nota:'Visita los lunes',productos:[1,2,3,4]},
+      {id:2,nombre:'Lácteos del Valle',tel:'3112223344',nota:'',productos:[15,16,17]},
+      {id:3,nombre:'Snacks y Dulces SAS',tel:'3125556677',nota:'',productos:[5,6,7,8]}];
+    db.nextProvId=4;
+    db.pagosProveedores=[{id:Date.now()-3*86400000,nombre:'Distribuidora Andina',monto:180000,motivo:'Pedido de bebidas',ts:Date.now()-3*86400000,proveedorId:1,metodo:'Efectivo'}];
+    db.deudasProveedores=[{id:1,proveedorId:2,proveedorNombre:'Lácteos del Valle',total:240000,motivo:'Pedido de lácteos (fiado)',ts:Date.now()-2*86400000,estado:'pendiente',productosRecibidos:false}];
+    db.nextDeudaProvId=2;
     db.config=Object.assign(db.config||{},{nombreNegocio:'Negocio Demo',cantidadMesas:8});
     sDB();
-    try{localStorage.setItem('demo_seed_v4','1');}catch(e){}
+    try{localStorage.setItem('demo_seed_v5','1');}catch(e){}
   }
   window.reiniciarDemo=function(){
     if(!confirm('¿Reiniciar la demo? Se borrará lo que hayas probado y volverán los datos de ejemplo.'))return;
-    try{localStorage.removeItem(K);localStorage.removeItem('demo_seed_v4');localStorage.removeItem(TK_KEY);localStorage.setItem('demo_inicio',String(Date.now()));}catch(e){}
+    try{localStorage.removeItem(K);localStorage.removeItem('demo_seed_v5');localStorage.removeItem(TK_KEY);localStorage.setItem('demo_inicio',String(Date.now()));}catch(e){}
     location.reload();
   };
   /* ---------- Prueba de 24 horas: pasado ese tiempo se borran los datos ---------- */
   const PRUEBA_MS=24*60*60*1000;
   function inicioPrueba(){try{return parseInt(localStorage.getItem('demo_inicio'))||0;}catch(e){return 0;}}
   function borrarPorVencimiento(){
-    try{localStorage.removeItem(K);localStorage.removeItem('demo_seed_v4');localStorage.removeItem(TK_KEY);
+    try{localStorage.removeItem(K);localStorage.removeItem('demo_seed_v5');localStorage.removeItem(TK_KEY);
         localStorage.setItem('demo_inicio',String(Date.now()));localStorage.setItem('demo_vencio','1');}catch(e){}
     location.reload();
   }
@@ -11869,15 +11895,13 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
     if(!ini){try{localStorage.setItem('demo_inicio',String(ahora));}catch(e){}}
     else if(ahora-ini>=PRUEBA_MS||ahora<ini-60000){borrarPorVencimiento();}
   })();
-  if(!localStorage.getItem('demo_seed_v4')||!(db.productos||[]).length){
+  if(!localStorage.getItem('demo_seed_v5')||!(db.productos||[]).length){
     try{seedDemo();}catch(e){console.error(e);}
   }
   /* ---------- Recorte de funciones ---------- */
   function recortar(){
-    document.querySelectorAll('.nl[data-v="clientes"]').forEach(e=>e.style.display='none');
-    document.querySelectorAll('#pay-methods-grid .pay-btn').forEach(b=>{if(/Cr[eé]dito|Fiado/i.test(b.textContent))b.style.display='none';});
     const ie=document.getElementById('pv-ie-row');if(ie)ie.style.display='none';
-    const ocultar=['Usuarios','Impresora','Respaldo','Actividad','Grupos de venta','Modo tienda de ropa','Opciones de ventas y productos'];
+    const ocultar=['Impresora','Respaldo','Modo tienda de ropa'];
     document.querySelectorAll('.cfg-menu-card').forEach(c=>{
       const l=c.querySelector('.cmc-label');if(l&&ocultar.includes(l.textContent.trim()))c.style.display='none';});
     document.querySelectorAll('button[onclick*="cerrarSistema"],button[onclick*="m-confirmar-cambio-usuario"],button[onclick*="cerrarSesion"]').forEach(b=>b.style.display='none');
