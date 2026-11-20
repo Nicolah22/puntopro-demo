@@ -61,8 +61,9 @@ body{font-family:'Inter', system-ui, sans-serif;background:var(--s2);min-height:
 }
 /* Buscador por nombre separado */
 #name-search-bar{display:none}
-#name-search-wrap{display:none;align-items:center;border:1.5px solid var(--b);border-radius:var(--r);background:var(--s);position:relative;transition:border-color .15s;overflow:visible;width:220px;flex-shrink:0}
+#name-search-wrap{display:flex;align-items:center;border:1.5px solid var(--b);border-radius:var(--r);background:var(--s);position:relative;transition:border-color .15s;overflow:visible;width:240px;flex-shrink:0}
 #name-search-wrap.expanded{display:flex;}
+#btn-buscar-nombre{display:none!important}
 #name-search-wrap:focus-within{border-color:var(--in)}
 #name-search-ico{padding:0 10px;font-size:15px;color:var(--in);flex-shrink:0}
 #name-search-input{flex:1;padding:7px 4px;border:none;background:transparent;font-size:15px;color:var(--t);outline:none}
@@ -442,8 +443,6 @@ body.dark tr.row-cancelada:hover td{background:#2e2e2e}
 .ticket-cancelada-banner{background:var(--dl);color:var(--dn);font-size:13px;font-weight:700;
   text-align:center;padding:8px;border-radius:var(--r);margin:10px 18px 0;}
 
-#btn-mayoreo{padding:8px 14px;border-radius:var(--r);border:1.5px solid var(--b);background:var(--s);color:var(--t2);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s}
-#btn-mayoreo:hover{border-color:var(--in);color:var(--in)}
 
 /* MAYOREO: fila amarilla en ticket */
 #tk-table tr.mayoreo-row td{background:#fffbe6;border-bottom-color:#f0d060}
@@ -579,10 +578,50 @@ body.dark .mayoreo-tag{background:#5a4800;color:#f0d060}
   padding:clamp(20px,3vh,36px) 16px;background:var(--s2);border-radius:var(--rl);cursor:pointer;
   border:2px solid var(--b);transition:all .15s;text-align:center;gap:10px;height:100%}
 .cfg-menu-card:hover{border-color:var(--ac);background:var(--al);transform:translateY(-3px);box-shadow:0 6px 20px rgba(29,158,117,.15)}
+.cmc-svg svg,.cfg-panel-ic svg{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cfg-menu-card .cmc-svg{width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:0}
+.cfg-menu-card .cmc-svg svg{width:34px;height:34px}
+.cmc-azul .cmc-svg{color:#2563eb}.cmc-gris .cmc-svg{color:#64748b}.cmc-morado .cmc-svg{color:#7c3aed}.cmc-teal .cmc-svg{color:#0d9488}
+.cfg-menu-card{padding:clamp(16px,2.4vh,26px) 12px!important;gap:8px!important}
+.cfg-menu-card .cmc-label{font-size:13.5px;overflow-wrap:normal;word-break:normal;hyphens:none;line-height:1.3}
+.cfg-menu-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))!important}
+.cfg-pcard{padding:18px 20px}
+.cfg-panel-head{display:flex;gap:14px;align-items:center}
+.cfg-panel-ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cfg-panel-ic svg{width:24px;height:24px}
+.cfg-panel-t{font-size:18px;font-weight:700;color:var(--t)}
+.cfg-panel-s{font-size:12.5px;color:var(--t2);margin-top:2px}
+.cfg-divider{height:1px;background:var(--b);margin:14px 0 4px}
+.cfg-item{border-bottom:1px solid var(--b)}
+.cfg-item:last-child{border-bottom:none}
+.cfg-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 2px;min-height:46px}
+.cfg-row-main{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.cfg-row-t{font-size:14.5px;font-weight:500;color:var(--t)}
+.cfg-info{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--t2);color:var(--t2);background:none;font:italic 700 12px Georgia,serif;cursor:pointer;padding:0;line-height:1;flex-shrink:0}
+.cfg-info:hover{border-color:var(--ac);color:var(--ac)}
+.cfg-info-txt{display:none;font-size:12.5px;color:var(--t2);line-height:1.55;padding:0 2px 12px}
+.cfg-info-txt.open{display:block}
+.cfg-keyrow{display:flex;gap:8px;align-items:center;padding:0 2px 14px}
+.cfg-keyrow input[type=password]{flex:1;max-width:260px}
+.cfg-sw-lbl{display:flex;align-items:center;margin:0;flex-shrink:0}
+.cfg-sub{font-size:12.5px;color:var(--t2);padding:6px 2px 0}
+body.dark .cmc-azul .cmc-svg{color:#60a5fa}body.dark .cmc-morado .cmc-svg{color:#a78bfa}body.dark .cmc-teal .cmc-svg{color:#2dd4bf}body.dark .cmc-gris .cmc-svg{color:#94a3b8}
+.cfg-sw input[type=checkbox]{-webkit-appearance:none;appearance:none;width:44px!important;height:26px!important;border-radius:13px;background:#c5cbd0;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;margin:0;border:none!important;padding:0!important;outline:none}
+.cfg-sw input[type=checkbox]::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .2s}
+.cfg-sw input[type=checkbox]:checked{background:var(--ac)}
+.cfg-sw input[type=checkbox]:checked::after{transform:translateX(18px)}
+.cfg-sw input[type=checkbox]:focus-visible{box-shadow:0 0 0 3px var(--al)}
+body.dark .cfg-sw input[type=checkbox]{background:#555}
+body.dark .cfg-sw input[type=checkbox]:checked{background:var(--ac)}
 .cfg-menu-card .cmc-icon{font-size:40px;line-height:1}
 .cfg-menu-card .cmc-label{font-size:14px;font-weight:700;color:var(--t)}
-.cfg-menu-card .cmc-desc{font-size:11px;color:var(--t2);line-height:1.4}
+.cfg-menu-card .cmc-desc{display:none;font-size:11px;color:var(--t2);line-height:1.4}
 
+/* DESCUENTO */
+.desc-btn{padding:6px 12px;border-radius:var(--r);border:1.5px solid var(--b);background:var(--s);color:var(--t);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.desc-btn-muted{color:var(--t2)}
+.desc-btn:hover{border-color:#d97706;color:#b45309;background:#fffbeb}
+.desc-btn.active{background:#d97706;color:white;border-color:#d97706}
 /* PROPINA */
 .propina-btn{padding:6px 12px;border-radius:var(--r);border:1.5px solid var(--b);background:var(--s);color:var(--t);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
 .propina-btn-muted{color:var(--t2)}
@@ -1059,13 +1098,12 @@ body.dark .cli-card-meta{color:#aaaaaa}
             oninput="this.value=this.value.toUpperCase();onScan()" onkeydown="onScanKey(event)" onfocus="openDD()" onblur="scheduleCloseDD()">
           <button id="scan-x" onclick="clearScan()">×</button>
         </div>
-        <button id="btn-mayoreo" onclick="toggleMayoreo()" title="Precio mayoreo">🏪 Mayoreo</button>
         <button id="btn-buscar-nombre" onclick="toggleNameSearch()" title="Buscar por nombre" style="padding:6px 12px;border:1.5px solid var(--b);border-radius:var(--r);background:var(--s);font-size:15px;cursor:pointer;color:var(--t2);flex-shrink:0">🔍</button>
         <div id="name-search-wrap">
           <span id="name-search-ico" style="padding:0 8px;font-size:13px;color:var(--in);flex-shrink:0">🔍</span>
           <input type="text" id="name-search-input" placeholder="Nombre del producto..." autocomplete="off"
             oninput="onNameSearch()" onkeydown="onNameSearchKey(event)" onfocus="openNDD()" onblur="scheduleCloseNDD()">
-          <button id="name-search-x" onclick="clearNameSearch();toggleNameSearch()">×</button>
+          <button id="name-search-x" onclick="clearNameSearch();document.getElementById('name-search-input').focus()">×</button>
         </div>
       </div>
 
@@ -1175,7 +1213,7 @@ body.dark .cli-card-meta{color:#aaaaaa}
             <span class="pt-icon">🏷</span> Nueva categoría
           </button>
           <button class="prod-tab" id="ptab-editar" onclick="showProdTab('editar')">
-            <span class="pt-icon">✏️</span> Editar producto
+            <span class="pt-icon">✏️</span> Editar y eliminar producto
           </button>
           <button class="prod-tab" id="ptab-sinmov" onclick="showProdTab('sinmov')">
             <span class="pt-icon">📦</span> Sin movimiento
@@ -1205,7 +1243,7 @@ body.dark .cli-card-meta{color:#aaaaaa}
           <div class="fr fr1"><div><label id="lbl-nombre">Nombre</label><input type="text" id="pn2" placeholder="Nombre del producto"></div></div>
           <div class="fr fr1" id="prod-talla-row" style="display:none"><div><label>Talla (opcional, para etiquetas)</label><input type="text" id="ptalla" placeholder="Ej: S, M, L, 32, Única" maxlength="12" style="text-transform:uppercase"></div></div>
           <div class="fr fr1"><div><label id="lbl-costo">Precio costo</label><input type="number" id="pco" placeholder="0" oninput="actualizarModoProd()"><div id="granel-costo-info" style="display:none;margin-top:6px;padding:8px 12px;background:#e0f2fe;border-radius:var(--r);font-size:12.5px;color:#0369a1;line-height:1.5"></div></div></div>
-          <div class="fr fr2"><div><label id="lbl-precio">Precio de venta</label><input type="number" id="pp2" placeholder="0" oninput="actualizarModoProd()"></div><div id="mayoreo-field"><label>Precio mayoreo</label><input type="number" id="ppm" placeholder="0"></div></div>
+          <div class="fr fr1"><div><label id="lbl-precio">Precio de venta</label><input type="number" id="pp2" placeholder="0" oninput="actualizarModoProd()"></div></div>
           <div class="fr fr2" id="stock-row"><div><label id="lbl-stock">Stock</label><input type="number" id="pst" placeholder="0" oninput="actualizarModoProd()"></div><div><label>Stock mínimo</label><input type="number" id="psm" placeholder="5"></div></div>
           <div class="fr fr1" id="stock-bodega-row" style="display:none"><div><label id="lbl-stock-bodega">🏭 Stock inicial para bodega <span style="text-transform:none;font-weight:400;color:var(--t2)">(opcional)</span></label><input type="number" id="pst-bodega" placeholder="0"></div></div>
           <div class="fr fr1"><div><label style="font-size:14px;color:var(--t)">📂 Categoría</label><select id="pcat-sel" style="font-size:16px;font-weight:600;padding:12px 14px;border-width:2px;border-color:var(--ac)"><option value="">— Sin categoría —</option></select></div></div>
@@ -1312,7 +1350,7 @@ body.dark .cli-card-meta{color:#aaaaaa}
               <div class="fr fr1"><div><label id="lbl-codigo3">Código de barras o código manual</label><input type="text" id="pc3" placeholder="Ej: 7702001001" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"></div></div>
               <div class="fr fr1"><div><label id="lbl-nombre3">Nombre</label><input type="text" id="pn3" placeholder="Nombre del producto"></div></div>
               <div class="fr fr1"><div><label>Precio costo</label><input type="number" id="pco3" placeholder="0"></div></div>
-              <div class="fr fr2"><div><label id="lbl-precio3">Precio de venta</label><input type="number" id="pp3" placeholder="0"></div><div id="mayoreo-field3"><label>Precio mayoreo</label><input type="number" id="ppm3" placeholder="0"></div></div>
+              <div class="fr fr1"><div><label id="lbl-precio3">Precio de venta</label><input type="number" id="pp3" placeholder="0"></div></div>
               <div class="fr fr2" id="stock-row3"><div><label id="lbl-stock3">Stock</label><input type="number" id="pst3" placeholder="0"></div><div><label>Stock mínimo</label><input type="number" id="psm3" placeholder="5"></div></div>
               <div class="fr fr1"><div><label style="font-size:14px;color:var(--t)">📂 Categoría</label><select id="pcat-sel3" style="font-size:16px;font-weight:600;padding:12px 14px;border-width:2px;border-color:var(--ac)"><option value="">— Sin categoría —</option></select></div></div>
               <div id="opcion-granel-wrap3">
@@ -1427,7 +1465,7 @@ body.dark .cli-card-meta{color:#aaaaaa}
         <div class="prod-panel" id="ppanel-importar" style="max-width:800px;margin:0 auto">
           <div class="card" style="padding:24px">
             <h3 style="margin-bottom:4px">📥 Importar productos desde Excel</h3>
-            <p style="font-size:13px;color:var(--t2);margin-bottom:20px">Sube un archivo .xlsx, .xls o .csv exportado de otro sistema. Funciona con las columnas: <strong>Codigo, Descripcion, Precio Costo, Precio Venta, Precio Mayoreo, Inventario, Inv. Minimo, Departamento</strong> (no importa el orden, ni si tienen mayúsculas distintas).</p>
+            <p style="font-size:13px;color:var(--t2);margin-bottom:20px">Sube un archivo .xlsx, .xls o .csv exportado de otro sistema. Funciona con las columnas: <strong>Codigo, Descripcion, Precio Costo, Precio Venta, Inventario, Inv. Minimo, Departamento</strong> (no importa el orden, ni si tienen mayúsculas distintas).</p>
             <input type="file" id="importar-excel-input" accept=".xlsx,.xls,.csv" style="display:none" onchange="procesarArchivoImportar(this)">
             <div id="importar-drop" onclick="document.getElementById('importar-excel-input').click()"
               style="border:2px dashed var(--b);border-radius:var(--r);padding:40px;text-align:center;cursor:pointer;background:var(--s2)">
@@ -1470,7 +1508,7 @@ body.dark .cli-card-meta{color:#aaaaaa}
           <button class="btn btn-p" onclick="irAImportarProductos()" style="white-space:nowrap;display:flex;align-items:center;gap:6px">📥 Importar desde Excel</button>
         </div>
         <div class="card" style="padding:0;overflow:hidden">
-          <table><thead><tr><th>Código</th><th>Nombre</th><th>Categoría</th><th>Costo</th><th>Precio</th><th>Mayoreo</th><th>Stock</th><th>Mínimo</th><th>Estado</th><th></th></tr></thead>
+          <table><thead><tr><th>Código</th><th>Nombre</th><th>Categoría</th><th>Costo</th><th>Precio</th><th>Stock</th><th>Mínimo</th><th>Estado</th><th></th></tr></thead>
           <tbody id="it"></tbody></table>
         </div>
         <div id="inv-paginacion" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px"></div>
@@ -1530,7 +1568,7 @@ body.dark .cli-card-meta{color:#aaaaaa}
           <div class="fr fr2">
             <div><label>Proveedor</label>
               <div style="position:relative">
-                <input type="text" id="prov-nombre" placeholder="Buscar proveedor..." autocomplete="off" oninput="filtrarProveedoresPago(this.value)" onkeydown="onKeyProvPagoInput(event)" onfocus="colapsarListaProveedoresSiAbierta()">
+                <input type="text" id="prov-nombre" placeholder="Buscar o escribir proveedor..." autocomplete="off" oninput="filtrarProveedoresPago(this.value)" onkeydown="onKeyProvPagoInput(event)" onfocus="colapsarListaProveedoresSiAbierta()">
                 <div id="prov-dd" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--s);border:1px solid var(--b);border-radius:var(--r);box-shadow:0 4px 12px rgba(0,0,0,.12);z-index:99;max-height:160px;overflow-y:auto;margin-top:2px"></div>
               </div>
             </div>
@@ -1672,73 +1710,71 @@ body.dark .cli-card-meta{color:#aaaaaa}
           <!-- MENÚ PRINCIPAL -->
           <div id="cfg-menu-main">
 
-            <!-- Sección: Negocio -->
             <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;margin-top:4px">🏪 Negocio</div>
             <div class="cfg-menu-grid" style="margin-bottom:20px">
-              <div class="cfg-menu-card" onclick="abrirSubvista('negocio','🏪 Mi negocio')">
+              <div class="cfg-menu-card cmc-azul" onclick="abrirSubvista('negocio','Mi negocio')">
                 <span class="cmc-icon">🏪</span>
                 <span class="cmc-label">Mi negocio</span>
-                <span class="cmc-desc">Logo, nombre y datos del negocio</span>
               </div>
-              <div class="cfg-menu-card" onclick="abrirSubvista('ticket','🧾 Ticket de venta')">
+              <div class="cfg-menu-card cmc-azul" onclick="abrirSubvista('ticket','Ticket de venta')">
                 <span class="cmc-icon">🧾</span>
                 <span class="cmc-label">Ticket de venta</span>
-                <span class="cmc-desc">Personaliza el encabezado, pie y tamaño del ticket</span>
               </div>
-              <div class="cfg-menu-card" onclick="abrirSubvista('apariencia','🌙 Apariencia')">
+              <div class="cfg-menu-card cmc-azul" onclick="abrirSubvista('apariencia','Apariencia')">
                 <span class="cmc-icon">🌙</span>
                 <span class="cmc-label">Apariencia</span>
-                <span class="cmc-desc">Modo oscuro manual o automático</span>
               </div>
             </div>
 
-            <!-- Sección: Sistema -->
             <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">⚙️ Sistema</div>
             <div class="cfg-menu-grid" style="margin-bottom:20px">
-              <div class="cfg-menu-card cfg-admin-only" onclick="abrirSubvista('usuarios','👥 Usuarios')">
-                <span class="cmc-icon">👥</span>
-                <span class="cmc-label">Usuarios</span>
-                <span class="cmc-desc">Crea y administra usuarios con permisos</span>
-              </div>
-              <div class="cfg-menu-card" onclick="abrirSubvista('impresora','🖨 Impresora')">
+              <div class="cfg-menu-card cmc-gris" onclick="abrirSubvista('impresora','Impresora')">
                 <span class="cmc-icon">🖨</span>
                 <span class="cmc-label">Impresora</span>
-                <span class="cmc-desc">Selecciona la impresora de tickets</span>
               </div>
-              <div class="cfg-menu-card cfg-admin-only" onclick="abrirSubvista('respaldo','💾 Respaldo de datos')">
+              <div class="cfg-menu-card cmc-gris cfg-admin-only" onclick="abrirSubvista('respaldo','Respaldo de datos')">
                 <span class="cmc-icon">💾</span>
                 <span class="cmc-label">Respaldo</span>
-                <span class="cmc-desc">Exporta o importa todos los datos del sistema</span>
               </div>
             </div>
 
-            <!-- Sección: Operación -->
-            <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">📊 Operación</div>
-            <div class="cfg-menu-grid">
-              <div class="cfg-menu-card cfg-admin-only" onclick="abrirSubvista('editarprecio','⚙️ Opciones de ventas y productos')">
-                <span class="cmc-icon">⚙️</span>
-                <span class="cmc-label">Opciones de ventas y productos</span>
-                <span class="cmc-desc">Editar precio, granel y sin inventario</span>
+            <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">🔐 Seguridad y control</div>
+            <div class="cfg-menu-grid" style="margin-bottom:20px">
+              <div class="cfg-menu-card cmc-morado cfg-admin-only" onclick="abrirSubvista('usuarios','Usuarios')">
+                <span class="cmc-icon">👥</span>
+                <span class="cmc-label">Usuarios</span>
               </div>
-              <div class="cfg-menu-card cfg-admin-only" onclick="abrirSubvista('actividad','📋 Actividad')">
+              <div class="cfg-menu-card cmc-morado cfg-admin-only" onclick="abrirSubvista('cfgseguridad','')">
+                <span class="cmc-icon">🔐</span>
+                <span class="cmc-label">Seguridad y permisos</span>
+              </div>
+              <div class="cfg-menu-card cmc-morado cfg-admin-only" onclick="abrirSubvista('actividad','Actividad')">
                 <span class="cmc-icon">📋</span>
                 <span class="cmc-label">Actividad</span>
-                <span class="cmc-desc">Registro de lo que hizo cada usuario</span>
               </div>
-              <div class="cfg-menu-card cfg-admin-only" onclick="abrirSubvista('grupos','🧩 Grupos de venta')">
+            </div>
+
+            <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">📊 Operación comercial</div>
+            <div class="cfg-menu-grid">
+              <div class="cfg-menu-card cmc-teal cfg-admin-only" onclick="abrirSubvista('cfgventas','')">
+                <span class="cmc-icon">🛒</span>
+                <span class="cmc-label">Configuración de ventas</span>
+              </div>
+              <div class="cfg-menu-card cmc-teal cfg-admin-only" onclick="abrirSubvista('cfgproductos','')">
+                <span class="cmc-icon">📦</span>
+                <span class="cmc-label">Productos e inventario</span>
+              </div>
+              <div class="cfg-menu-card cmc-teal cfg-admin-only" onclick="abrirSubvista('grupos','Grupos de venta')">
                 <span class="cmc-icon">🧩</span>
                 <span class="cmc-label">Grupos de venta</span>
-                <span class="cmc-desc">Combos: un código que agrega varios productos juntos</span>
               </div>
-              <div class="cfg-menu-card cfg-admin-only" onclick="abrirSubvista('ropa','👗 Modo tienda de ropa')">
+              <div class="cfg-menu-card cmc-teal cfg-admin-only" onclick="abrirSubvista('ropa','Modo tienda de ropa')">
                 <span class="cmc-icon">👗</span>
                 <span class="cmc-label">Modo tienda de ropa</span>
-                <span class="cmc-desc">Talla en los productos e impresión de etiquetas (stickers)</span>
               </div>
-              <div class="cfg-menu-card cfg-admin-only" onclick="abrirSubvista('restaurante','🍽 Modo restaurante')">
+              <div class="cfg-menu-card cmc-teal cfg-admin-only" onclick="abrirSubvista('restaurante','Modo restaurante')">
                 <span class="cmc-icon">🍽</span>
                 <span class="cmc-label">Modo restaurante</span>
-                <span class="cmc-desc">Mesas fijas que no se cierran al cobrar, solo se vacían</span>
               </div>
             </div>
 
@@ -1856,6 +1892,25 @@ body.dark .cli-card-meta{color:#aaaaaa}
       <div id="pago-dividido-resumen" style="margin-top:10px;font-size:13px;font-weight:700;text-align:right"></div>
     </div>
 
+    <!-- Descuento -->
+    <div id="desc-area" style="margin-top:12px;background:var(--s2);border-radius:var(--r);padding:12px 14px">
+      <div style="font-size:12px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Descuento (opcional)</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+        <button class="desc-btn" data-pct="5" onclick="setDescuento(5)">5%</button>
+        <button class="desc-btn" data-pct="10" onclick="setDescuento(10)">10%</button>
+        <button class="desc-btn" data-pct="15" onclick="setDescuento(15)">15%</button>
+        <button class="desc-btn" data-pct="20" onclick="setDescuento(20)">20%</button>
+        <button class="desc-btn desc-btn-muted" data-pct="0" onclick="setDescuento(0)">Sin descuento</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:13px;color:var(--t2)">Personalizado</span>
+        <input type="number" id="desc-custom" placeholder="Ej: 7" min="0" max="100" step="0.1"
+          style="width:90px;padding:5px 8px;border:1.5px solid var(--b);border-radius:var(--r);font-size:14px;font-weight:600;text-align:right;font-family:inherit;outline:none"
+          oninput="setDescuentoCustom()">
+        <span style="font-size:13px;color:var(--t2)">%</span>
+        <span id="desc-resumen" style="font-size:14px;font-weight:700;color:#b45309;margin-left:auto">-$0</span>
+      </div>
+    </div>
     <!-- Propina -->
     <div id="propina-area" style="margin-top:12px;background:var(--s2);border-radius:var(--r);padding:12px 14px">
       <div style="font-size:12px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Propina (opcional)</div>
@@ -2000,7 +2055,7 @@ body.dark .cli-card-meta{color:#aaaaaa}
     <div class="fr fr1"><div><label>Nombre</label><input type="text" id="pn2" placeholder="Nombre del producto"></div></div>
     <div class="fr fr1"><div><label>Código de barras o código manual</label><input type="text" id="pc2" placeholder="Ej: 7702001001"></div></div>
     <div class="fr fr1"><div><label>Precio costo</label><input type="number" id="pco" placeholder="0"></div></div>
-    <div class="fr fr2"><div><label>Precio de venta</label><input type="number" id="pp2" placeholder="0"></div><div><label>Precio mayoreo</label><input type="number" id="ppm" placeholder="0"></div></div>
+    <div class="fr fr1"><div><label>Precio de venta</label><input type="number" id="pp2" placeholder="0"></div></div>
     <div class="fr fr2"><div><label>Stock</label><input type="number" id="pst" placeholder="0"></div><div><label>Stock mínimo</label><input type="number" id="psm" placeholder="5"></div></div>
     <div class="fr fr1"><div><label>Categoría</label><select id="pcat-sel"><option value="">— Sin categoría —</option></select></div></div>
     <div class="mf"><button class="btn" onclick="cM('mp')">Cancelar</button><button class="btn btn-p" onclick="saveProd()">Guardar producto</button></div>
@@ -2246,32 +2301,6 @@ body.dark .cli-card-meta{color:#aaaaaa}
 </div>
 
 
-<!-- MODAL SELECCION PRECIO NORMAL / MAYOREO -->
-<div id="m-sel-precio">
-  <div class="sel-precio-box">
-    <h3 id="sp-nombre">Producto</h3>
-    <p id="sp-subtitulo">¿A qué precio quieres agregarlo?</p>
-    <div class="sel-precio-opts">
-      <div class="precio-opt opt-normal" onclick="confirmarPrecio(false)">
-        <div>
-          <div class="po-label">Precio normal</div>
-          <div class="po-desc">Precio de venta estándar</div>
-        </div>
-        <div class="po-price" id="sp-precio-normal">$0</div>
-      </div>
-      <div class="precio-opt opt-mayoreo" onclick="confirmarPrecio(true)">
-        <div>
-          <div class="po-label">🏪 Mayoreo</div>
-          <div class="po-desc">Precio especial por volumen</div>
-        </div>
-        <div class="po-price" id="sp-precio-mayoreo">$0</div>
-      </div>
-    </div>
-    <div style="margin-top:16px;text-align:right">
-      <button class="btn" onclick="cancelarSelPrecio()">Cancelar</button>
-    </div>
-  </div>
-</div>
 
 <!-- MODAL CONFIRMAR ELIMINAR CATEGORÍA -->
 <div id="m-abono-prov">
@@ -3266,20 +3295,21 @@ function buildTicketHTML(autoPrint){
   return baseHtml;
 }
 
-function abrirTicketConQR(autoPrint,cartData,callback,propinaMonto,metodo){
+function abrirTicketConQR(autoPrint,cartData,callback,propinaMonto,metodo,descuentoMonto){
+  const descuento=descuentoMonto!==undefined?descuentoMonto:descuentoActual;
   const modoImg=localStorage.getItem(TICKET_IMG_MODE_KEY)||'link';
   const cart=cartData||getCart();
   const propina=propinaMonto!==undefined?propinaMonto:propinaActual;
   const metodoDisplay=selectedPM;
   if(modoImg==='imagen'){
     const imgGuardada=localStorage.getItem(TICKET_IMG_DATA_KEY)||'';
-    callback(buildTicketHTMLFromCart(autoPrint,cart,propina,metodoDisplay,imgGuardada||undefined));
+    callback(buildTicketHTMLFromCart(autoPrint,cart,propina,metodoDisplay,imgGuardada||undefined,descuento));
     return;
   }
   const qrLink=localStorage.getItem(QR_KEY)||'';
-  if(!qrLink){callback(buildTicketHTMLFromCart(autoPrint,cart,propina,metodoDisplay));return;}
+  if(!qrLink){callback(buildTicketHTMLFromCart(autoPrint,cart,propina,metodoDisplay,undefined,descuento));return;}
   generarQRDataURL(qrLink,100,function(qrDataUrl){
-    callback(buildTicketHTMLFromCart(autoPrint,cart,propina,metodoDisplay,qrDataUrl));
+    callback(buildTicketHTMLFromCart(autoPrint,cart,propina,metodoDisplay,qrDataUrl,descuento));
   });
 }
 
@@ -3323,7 +3353,8 @@ function notaLineasTicket(nota){
   if(linea.trim())out.push({type:'left',text:linea.trimEnd(),bold:true});
   return out;
 }
-function buildTicketLines(cart, propina, pm, entrega, pagosDivididos, nota){
+function buildTicketLines(cart, propina, pm, entrega, pagosDivididos, nota, descuento){
+  descuento=descuento||0;
   const lTop=(cfg.linesTop||[]).filter(l=>l.trim());
   const lBot=(cfg.linesBottom||[]).filter(l=>l.trim());
   const total=cart.reduce((s,c)=>s+(c.granel?(c.precioTotal||c.qty*c.precio):c.qty*c.precio),0);
@@ -3350,11 +3381,12 @@ function buildTicketLines(cart, propina, pm, entrega, pagosDivididos, nota){
   });
   lines.push({separator:true});
   // Total
-  if(propina>0){
+  if(propina>0||descuento>0){
     lines.push({type:'left',text:padLineToWidth('Subtotal:',fmt(total))});
-    lines.push({type:'left',text:padLineToWidth('+ Propina:',fmt(propina))});
+    if(descuento>0)lines.push({type:'left',text:padLineToWidth('- Descuento:',fmt(descuento))});
+    if(propina>0)lines.push({type:'left',text:padLineToWidth('+ Propina:',fmt(propina))});
     lines.push({separator:true});
-    lines.push({type:'left',text:padLineToWidth('TOTAL:',fmt(total+propina)),bold:true,totalBig:true});
+    lines.push({type:'left',text:padLineToWidth('TOTAL:',fmt(total-descuento+propina)),bold:true,totalBig:true});
   } else {
     lines.push({type:'left',text:padLineToWidth('TOTAL:',fmt(total)),bold:true,totalBig:true});
   }
@@ -3368,7 +3400,7 @@ function buildTicketLines(cart, propina, pm, entrega, pagosDivididos, nota){
   }
   notaLineasTicket(nota).forEach(l=>lines.push(l));
   if(!pagosDivididos&&pm==='Efectivo'&&entrega>0){
-    const totalConPropina=total+propina;
+    const totalConPropina=total-descuento+propina;
     lines.push({type:'left',text:padLineToWidth('Recibido:',fmt(entrega))});
     lines.push({type:'left',text:padLineToWidth('Vuelto:',fmt(Math.max(0,entrega-totalConPropina)))});
   }
@@ -3396,7 +3428,8 @@ function buildTicketLines(cart, propina, pm, entrega, pagosDivididos, nota){
   return lines;
 }
 
-function buildTicketHTMLFromCart(autoPrint,cart,propina,pm,qrDataUrl){
+function buildTicketHTMLFromCart(autoPrint,cart,propina,pm,qrDataUrl,descuento){
+  descuento=descuento||0;
   const font=cfg.font||12;
   const anchoMm=cfg.ancho||72;
   const anchoMmToPx=Math.round(anchoMm*3.78);
@@ -3438,10 +3471,11 @@ function buildTicketHTMLFromCart(autoPrint,cart,propina,pm,qrDataUrl){
     +'<hr class="sep">'
     +itemsHtml
     +'<hr class="sep">'
-    +(propina>0
+    +((propina>0||descuento>0)
       ?'<div style="display:flex;justify-content:space-between;font-size:'+font+'px;font-weight:700;margin-bottom:2px"><span>Subtotal</span><span>'+fmt(total)+'</span></div>'
-       +'<div style="display:flex;justify-content:space-between;font-size:'+font+'px;font-weight:700;margin-bottom:2px"><span>+ Propina</span><span>'+fmt(propina)+'</span></div>'
-       +'<div class="total-row"><span>TOTAL</span><span>'+fmt(total+propina)+'</span></div>'
+       +(descuento>0?'<div style="display:flex;justify-content:space-between;font-size:'+font+'px;font-weight:700;margin-bottom:2px"><span>- Descuento</span><span>'+fmt(descuento)+'</span></div>':'')
+       +(propina>0?'<div style="display:flex;justify-content:space-between;font-size:'+font+'px;font-weight:700;margin-bottom:2px"><span>+ Propina</span><span>'+fmt(propina)+'</span></div>':'')
+       +'<div class="total-row"><span>TOTAL</span><span>'+fmt(total-descuento+propina)+'</span></div>'
       :'<div class="total-row"><span>TOTAL</span><span>'+fmt(total)+'</span></div>')
     +(cfg.metodo!==false?'<div class="meta">Método: '+pm+'</div>':'')
     +((tk&&tk.nota&&notasVentasActivas())?'<div style="font-weight:700;margin-top:4px;word-wrap:break-word">NOTA: '+String(tk.nota).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</div>':'')
@@ -3457,7 +3491,7 @@ function verTicketModal(){
   const cartSnapshot=getCart().map(c=>({...c}));
   const entregaActual=selectedPM==='Efectivo'?(parseFloat(document.getElementById('vuelto-input')?.value)||0):0;
   if(window.electronAPI){
-    const lines=buildTicketLines(cartSnapshot,propinaActual,selectedPM,entregaActual,null,(getTk()||{}).nota);
+    const lines=buildTicketLines(cartSnapshot,propinaActual,selectedPM,entregaActual,null,(getTk()||{}).nota,descuentoActual);
     window.electronAPI.printTicket(lines,{charsPerLine:getCharsPerLine()}).then(r=>{
       if(r&&r.success)tst('Ticket enviado a impresora');
       else tst('Error al imprimir: '+(r&&r.error||'desconocido'),false);
@@ -3480,6 +3514,7 @@ async function imprimirTicketModal(){
   }
   const cartSnapshot=getCart().map(c=>({...c}));
   const propinaSnapshot=propinaActual;
+  const descuentoSnapshot=descuentoActual;
   const pmSnapshot=selectedPM;
   const pagosDivididosSnapshot=pagoDivididoActivo?getPagoDivididoValido():null;
   const entregaSnapshot=selectedPM==='Efectivo'?(parseFloat(document.getElementById('vuelto-input')?.value)||0):0;
@@ -3492,7 +3527,7 @@ async function imprimirTicketModal(){
     // 2) Confirmar el cobro (internamente también intenta abrir el cajón, pero repetirlo no hace daño)
     confCob();
     // 3) Recién ahora mandar a imprimir
-    const lines=buildTicketLines(cartSnapshot,propinaSnapshot,pmSnapshot,entregaSnapshot,pagosDivididosSnapshot,(getTk()||{}).nota);
+    const lines=buildTicketLines(cartSnapshot,propinaSnapshot,pmSnapshot,entregaSnapshot,pagosDivididosSnapshot,(getTk()||{}).nota,descuentoSnapshot);
     window.electronAPI.printTicket(lines,{charsPerLine:getCharsPerLine()}).then(r=>{
       if(r&&r.success)tst('Ticket enviado a impresora');
       else tst('Error al imprimir: '+(r&&r.error||'desconocido'),false);
@@ -3507,7 +3542,7 @@ async function imprimirTicketModal(){
     const w=window.open('','_blank','width=340,height=580');
     if(w){w.document.open();w.document.write(html);w.document.close();}
     else tst('Activa ventanas emergentes en el navegador',false);
-  },propinaSnapshot,pmSnapshot);
+  },propinaSnapshot,pmSnapshot,descuentoSnapshot);
 }
 function imprimirTicket(){imprimirTicketModal();}
 
@@ -3610,7 +3645,7 @@ function previewTicket(){
   const cartEj=[
     {id:1,nombre:'Coca-Cola 350ml',qty:2,precio:2500,esMayoreo:false},
     {id:2,nombre:'Pan tajado',qty:1,precio:5500,esMayoreo:false},
-    {id:3,nombre:'Chocolate Jet',qty:3,precio:2900,esMayoreo:true},
+    {id:3,nombre:'Chocolate Jet',qty:3,precio:2900,esMayoreo:false},
   ];
   const usuarioAntes=typeof currentUser!=='undefined'?currentUser:null;
   if(typeof currentUser==='undefined'||!currentUser)currentUser={nombre:'Administrador'};
@@ -3661,19 +3696,7 @@ function scrollTabs(dir){
 // ===== BUSCADOR POR NOMBRE =====
 let nameResults=[],nameDDIdx=-1,nameDDCloseTimer=null;
 function toggleNameSearch(){
-  const wrap=document.getElementById('name-search-wrap');
-  const btn=document.getElementById('btn-buscar-nombre');
-  if(!wrap)return;
-  const expanded=wrap.classList.contains('expanded');
-  if(expanded){
-    wrap.classList.remove('expanded');
-    clearNameSearch();
-    if(btn)btn.style.color='var(--t2)';
-  } else {
-    wrap.classList.add('expanded');
-    if(btn)btn.style.color='var(--ac)';
-    setTimeout(()=>document.getElementById('name-search-input')?.focus(),50);
-  }
+  document.getElementById('name-search-input')?.focus();
 }
 
 function onNameSearch(){
@@ -3730,10 +3753,6 @@ function clearNameSearch(){
 }
 function closeNameSearchAfterSelect(){
   clearNameSearch();
-  const wrap=document.getElementById('name-search-wrap');
-  const btn=document.getElementById('btn-buscar-nombre');
-  if(wrap)wrap.classList.remove('expanded');
-  if(btn)btn.style.color='var(--t2)';
 }
 
 renderAll();
@@ -4076,31 +4095,6 @@ function mostrarAlerta(tipo,nombreProd,stockActual,stockMin){
 function cerrarAlerta(){clearTimeout(alertTimer);document.getElementById('stock-alert').classList.remove('show');}
 
 // ===== CARRITO =====
-function toggleMayoreo(){
-  const tk=getTk();
-  if(selectedRow<0||!tk||!tk.items[selectedRow]){
-    tst('Selecciona un producto del ticket primero',false);return;
-  }
-  const item=tk.items[selectedRow];
-  const prod=db.productos.find(x=>x.id===item.id);
-  if(!prod){tst('Producto no encontrado',false);return;}
-  if(!prod.precioMayoreo||prod.precioMayoreo<=0){
-    tst('"'+prod.nombre+'" no tiene precio de mayoreo definido',false);return;
-  }
-  if(item.esMayoreo){
-    item.precio=prod.precio;
-    item.esMayoreo=false;
-    renderAll();
-    tst(prod.nombre+' → precio normal '+fmt(prod.precio));
-  } else {
-    item.precio=prod.precioMayoreo;
-    item.esMayoreo=true;
-    renderAll();
-    tst(prod.nombre+' → mayoreo '+fmt(prod.precioMayoreo));
-  }
-}
-
-let selPrecioId=null;
 
 // ===== STOCK RESERVADO EN TICKETS =====
 // Calcula cuántas unidades hay reservadas en todos los tickets abiertos
@@ -4185,24 +4179,9 @@ function addCbyId(id){
   if(getStockDisponible(id)<=0){mostrarAlerta('danger',p.nombre,0,p.stockMin);return;}
   // Si es a granel, abrir modal de peso
   if(p.granel){abrirGranel(id);return;}
-  agregarProducto(id,false);
-  // Cerrar buscador por nombre después de agregar
-  const wrap=document.getElementById('name-search-wrap');
-  if(wrap&&wrap.classList.contains('expanded')){
-    wrap.classList.remove('expanded');
-    clearNameSearch();
-    const btn=document.getElementById('btn-buscar-nombre');
-    if(btn)btn.style.color='var(--t2)';
-  }
-}
-function cancelarSelPrecio(){
-  document.getElementById('m-sel-precio').classList.remove('open');
-  selPrecioId=null;
-}
-function confirmarPrecio(esMayoreo){
-  document.getElementById('m-sel-precio').classList.remove('open');
-  if(selPrecioId!==null){agregarProducto(selPrecioId,esMayoreo);}
-  selPrecioId=null;
+  agregarProducto(id);
+  // El buscador por nombre queda siempre abierto; solo se limpia después de agregar
+  clearNameSearch();
 }
 function agregarProductoUnidad(id){
   const p=db.productos.find(x=>x.id===id);
@@ -4224,11 +4203,11 @@ function agregarProductoUnidad(id){
   clearScan();clearNameSearch();renderAll();
   tst((p.nombreUnidad||'Unidad')+' agregado');
 }
-function agregarProducto(id,esMayoreo){
+function agregarProducto(id){
   const p=db.productos.find(x=>x.id===id);
   if(!p)return;
   const tk=getTk();if(!tk)return;
-  const precio=esMayoreo?p.precioMayoreo:p.precio;
+  const precio=p.precio;
   const factor=p.tienePaquete?(p.unidadesPorPaquete||1):1;
   // Verificar stock disponible ANTES de agregar
   const reservadoTotal=getStockReservado(id);
@@ -4241,10 +4220,10 @@ function agregarProducto(id,esMayoreo){
     }
     return;
   }
-  const e=tk.items.find(x=>x.id===id&&x.esMayoreo===esMayoreo&&!!x.esPaquete===!!p.tienePaquete&&!x.esUnidad);
+  const e=tk.items.find(x=>x.id===id&&!x.esMayoreo&&!!x.esPaquete===!!p.tienePaquete&&!x.esUnidad);
   if(e){e.qty++;selectedRow=tk.items.indexOf(e);}
   else{
-    const item={id,nombre:p.nombre,codigo:p.codigo||'',precio,categoria:p.categoria||'Sin categoría',qty:1,esMayoreo};
+    const item={id,nombre:p.nombre,codigo:p.codigo||'',precio,categoria:p.categoria||'Sin categoría',qty:1};
     if(p.tienePaquete){item.esPaquete=true;item.unidadesPorPaquete=p.unidadesPorPaquete;}
     tk.items.push(item);selectedRow=tk.items.length-1;
   }
@@ -4301,7 +4280,7 @@ function agregarGrupo(gid){
       if(getStockReservado(p.id)+it.qty*factor>p.stock){mostrarAlerta('danger',p.nombre+' (del grupo '+g.nombre+')',0,p.stockMin);clearScan();return;}
     }
   }
-  g.items.forEach(it=>{for(let i=0;i<it.qty;i++)agregarProducto(it.id,false);});
+  g.items.forEach(it=>{for(let i=0;i<it.qty;i++)agregarProducto(it.id);});
   clearScan();clearNameSearch();renderAll();
   tst('Grupo "'+g.nombre+'" agregado — '+fmt(precioGrupo(g)));
 }
@@ -4691,6 +4670,10 @@ function cobrar(){
         +'<span style="color:var(--t2);font-size:13px">Subtotal</span>'
         +'<span style="font-size:13px;font-weight:600">'+fmt(total)+'</span>'
       +'</div>'
+      +'<div id="cobrar-desc-row" style="display:none;justify-content:space-between;margin-bottom:4px">'
+        +'<span style="color:#b45309;font-size:13px">- Descuento</span>'
+        +'<span id="cobrar-desc-val" style="font-size:13px;font-weight:600;color:#b45309"></span>'
+      +'</div>'
       +'<div id="cobrar-propina-row" style="display:none;justify-content:space-between;margin-bottom:4px">'
         +'<span style="color:var(--ac);font-size:13px">+ Propina</span>'
         +'<span id="cobrar-propina-val" style="font-size:13px;font-weight:600;color:var(--ac)"></span>'
@@ -4703,12 +4686,15 @@ function cobrar(){
         +'<span>Método de pago</span><span style="font-weight:600;color:var(--t)">'+selectedPM+'</span>'
       +'</div>'
     +'</div>';
-  // Reset propina
+  // Reset propina y descuento
+  resetDescuento();
   resetPropina();
   resetPagoDividido();
   const esCredito = selectedPM==='Crédito';
   const esMixto = selectedPM==='Mixto';
   // Propina — ocultar para crédito, funciona normal para todo lo demás (incluyendo Mixto)
+  const descArea=document.getElementById('desc-area');
+  if(descArea)descArea.style.display=(esCredito||!descuentoActivo())?'none':'block';
   const propinaArea=document.getElementById('propina-area');
   if(propinaArea)propinaArea.style.display=(esCredito||(!propinaActiva()&&selectedPM!=='Bold'))?'none':'block';
   // El interruptor manual de "dividir el pago" ya no hace falta — ahora es el botón "Pago Mixto" el que lo activa
@@ -4874,6 +4860,13 @@ function aplicarVisibilidadOpcionesProducto(){
   }
 }
 function propinaActiva(){return !(db.config&&db.config.propinaActiva===false);}
+function descuentoActivo(){return !(db.config&&db.config.descuentoActivo===false);}
+function toggleDescuentoActivo(){if(!soloAdmin())return;
+  const chk=document.getElementById('cfg-descuento-toggle');
+  if(!db.config)db.config={};
+  db.config.descuentoActivo=!!(chk&&chk.checked);
+  sDB();
+}
 function togglePropinaActiva(){if(!soloAdmin())return;
   const chk=document.getElementById('cfg-propina-toggle');
   if(!db.config)db.config={};
@@ -5037,7 +5030,7 @@ function togglePagoDividido(){
 function getTotalActualCobro(){
   const cart=getCart();
   const subtotal=cart.reduce((s,c)=>s+(c.granel?(c.precioTotal||c.qty*c.precio):c.qty*c.precio),0);
-  return subtotal+propinaActual;
+  return subtotal-descuentoActual+propinaActual;
 }
 function actualizarResumenPagoDividido(){
   const total=getTotalActualCobro();
@@ -5088,7 +5081,7 @@ function confCob(forzar){
     return;
   }
   const subtotal=cart.reduce((s,c)=>s+(c.granel?(c.precioTotal||c.qty*c.precio):c.qty*c.precio),0);
-  const total=subtotal+propinaActual;
+  const total=subtotal-descuentoActual+propinaActual;
   let pagosDivididos=null;
   if(pagoDivididoActivo){
     const resultado=getPagoDivididoValido();
@@ -5099,11 +5092,12 @@ function confCob(forzar){
   const metodoDisplay=pagosDivididos?'Mixto':selectedPM;
   cart.forEach(c=>{const p=db.productos.find(x=>x.id===c.id);if(p){const unidReales=c.qty*(c.esPaquete&&c.unidadesPorPaquete?c.unidadesPorPaquete:1);if(!p.sinInventario&&!p.granel)p.stock-=unidReales;else if(granelControla(p))p.stock=Math.max(0,(p.stock||0)-c.qty);agregarMovimiento(p,{tipo:'venta',qty:unidReales,ts:Date.now()});}});
   const entregaVenta=(!pagosDivididos&&metodoReal==='Efectivo')?(parseFloat(document.getElementById('vuelto-input')?.value)||0):0;
-  const ventaNueva={id:db.nextVId++,items:cart.map(c=>({...c})),total,propina:propinaActual,metodo:metodoReal,metodoDisplay,ts:Date.now(),estado:'Pagada',usuario:currentUser?currentUser.nombre:null,entrega:entregaVenta||null};
+  const ventaNueva={id:db.nextVId++,items:cart.map(c=>({...c})),total,propina:propinaActual,descuento:descuentoActual||0,metodo:metodoReal,metodoDisplay,ts:Date.now(),estado:'Pagada',usuario:currentUser?currentUser.nombre:null,entrega:entregaVenta||null};
   if(pagosDivididos)ventaNueva.pagosDivididos=pagosDivididos;
   if(tk.nota&&notasVentasActivas())ventaNueva.nota=tk.nota;
   db.ventas.push(ventaNueva);
   resetPropina();
+  resetDescuento();
   resetPagoDividido();
   sDB();cM('mcob');
   tk.items=[];delete tk.nota;
@@ -6041,7 +6035,7 @@ function getVF(){
 // Calcula ganancia total: (precio_venta - costo) × qty por cada item
 function calcGanancia(ventas){
   return ventas.filter(v=>!v.cancelada).reduce((total,v)=>{
-    return total+v.items.filter(i=>!i.cancelado).reduce((s,it)=>{
+    return total-(v.descuento||0)+v.items.filter(i=>!i.cancelado).reduce((s,it)=>{
       const prod=db.productos.find(p=>p.id===it.id);
       const costo=prod?prod.costo:0;
       return s+(it.granel?((it.precioTotal||it.qty*it.precio)-costo*it.qty/1000):it.esUnidad?((it.qty*it.precio)-(costo/(prod&&prod.unidadesPorPaquete?prod.unidadesPorPaquete:1))*it.qty):(it.precio-costo)*it.qty);
@@ -6109,6 +6103,7 @@ function rCorte(){
     '<div class="sc"><div class="l">Ventas</div><div class="v">'+nVentas+'</div></div>'
     +'<div class="sc"><div class="l">Ingresos</div><div class="v">'+fmt(tot)+'</div></div>'
     +'<div class="sc"><div class="l">Ganancia</div><div class="v" style="color:var(--ac)">'+fmt(gananciaCorte)+'</div></div>'
+    +(vs.some(v=>v.descuento>0)?'<div class="sc"><div class="l">Descuentos</div><div class="v" style="color:#b45309">-'+fmt(vs.reduce((s,v)=>s+(v.descuento||0),0))+'</div></div>':'')
     +(propinasCorte>0?'<div class="sc"><div class="l">Propinas</div><div class="v" style="color:var(--in)">'+fmt(propinasCorte)+'</div></div>':'')
     +(totalPagosCorte>0?'<div class="sc"><div class="l">Pagos proveedores</div><div class="v" style="color:var(--dn)">-'+fmt(totalPagosCorte)+'</div></div>':'')
     +(totalPagosCorte>0?'<div class="sc"><div class="l">Neto</div><div class="v" style="color:var(--in)">'+fmt(gananciaCorte-totalPagosCorte)+'</div></div>':'');
@@ -6786,7 +6781,7 @@ function editP(id){
   showProdTab('nuevo');
   document.getElementById('mpt').textContent='Editar producto';
   document.getElementById('pei').value=p.id;
-  ['pn2','pc2','pp2','ppm','pco','pst','psm'].forEach((f,i)=>document.getElementById(f).value=[p.nombre,p.codigo,p.precio,p.precioMayoreo||0,p.costo,p.stock,p.stockMin][i]);
+  ['pn2','pc2','pp2','pco','pst','psm'].forEach((f,i)=>document.getElementById(f).value=[p.nombre,p.codigo,p.precio,p.costo,p.stock,p.stockMin][i]);
   const tlEl=document.getElementById('ptalla');if(tlEl)tlEl.value=p.talla||'';
   if(p.granel&&!p.sinInventario){document.getElementById('pst').value=p.controlaStock?p.stock:'';document.getElementById('psm').value=p.controlaStock?p.stockMin:'';}
   const grEl=document.getElementById('p-granel');if(grEl)grEl.checked=!!p.granel;
@@ -6802,7 +6797,6 @@ function actualizarModoProd(inline){
   const sinInv=document.getElementById('p-sin-inv'+suf)?.checked;
   const lblPrecio=document.getElementById('lbl-precio'+suf);
   const lblStock=document.getElementById('lbl-stock'+suf);
-  const mayoreoField=document.getElementById('mayoreo-field'+suf);
   const hint=document.getElementById('granel-hint'+suf);
   const sinInvHint=document.getElementById('sin-inv-hint'+suf);
   const stockRow=document.getElementById('stock-row'+suf);
@@ -6810,12 +6804,10 @@ function actualizarModoProd(inline){
   const pst=document.getElementById('pst'+suf);
   if(granel){
     if(lblPrecio)lblPrecio.textContent='Precio por kilogramo';
-    if(mayoreoField)mayoreoField.style.display='none';
     if(hint)hint.style.display='block';
     if(pp2)pp2.placeholder='Ej: 8000';
   } else {
     if(lblPrecio)lblPrecio.textContent='Precio de venta';
-    if(mayoreoField)mayoreoField.style.display='';
     if(hint)hint.style.display='none';
     if(pp2)pp2.placeholder='0';
   }
@@ -6843,7 +6835,11 @@ function actualizarModoProd(inline){
         const f=n=>(Math.round(n*100)/100).toLocaleString('es-CO',{maximumFractionDigits:2});
         infoCosto.style.display='block';
         infoCosto.innerHTML='Cada gramo cuesta <strong>$'+f(cg)+'</strong> (kilo: $'+f(cg*1000)+')'+(precioKg>0?' · vendes a $'+f(precioKg/1000)+' el gramo → ganancia <strong>$'+f(precioKg/1000-cg)+'</strong> por gramo':'');
+      }else if(!modoTotal&&costoIn>0&&precioKg>0&&costoIn>precioKg){
+        infoCosto.style.display='block';
+        infoCosto.innerHTML='⚠️ <strong style="color:#dc2626">El costo por kilo ($'+costoIn.toLocaleString('es-CO')+') es mayor que el precio por kilo ($'+precioKg.toLocaleString('es-CO')+')</strong>: cada venta saldrá con pérdida. Revisa el costo.';
       }else{infoCosto.style.display='none';}
+      if(modoTotal&&costoIn>0&&precioKg>0&&precioKg/1000<costoIn/gramos){infoCosto.innerHTML+='<br>⚠️ <strong style="color:#dc2626">Vas a vender por debajo del costo.</strong> Revisa que el stock esté en gramos y el costo sea el total de esos gramos.';}
     }
   } else if(sinInv){
     if(stockRow)stockRow.style.display='none';
@@ -6864,7 +6860,7 @@ function actualizarModoProd(inline){
 function limpiarFormProd(){
   document.getElementById('pei').value='';
   document.getElementById('mpt').textContent='Nuevo producto';
-  ['pn2','pc2','pp2','ppm','pco','pst','psm'].forEach(x=>document.getElementById(x).value='');
+  ['pn2','pc2','pp2','pco','pst','psm'].forEach(x=>document.getElementById(x).value='');
   const tlClr=document.getElementById('ptalla');if(tlClr)tlClr.value='';
   const pstBod=document.getElementById('pst-bodega');if(pstBod)pstBod.value='';
   const gr=document.getElementById('p-granel');if(gr)gr.checked=false;
@@ -6956,7 +6952,7 @@ function _guardarProdFinal(){
   if(esGranelForm&&controlaStockForm&&!id&&stockFinal>0){
     costoFinal=Math.round((costoFinal/(stockFinal/1000))*100)/100;
   }
-  const data={nombre,codigo,controlaStock:controlaStockForm,talla:(document.getElementById('ptalla')?.value||'').trim().toUpperCase(),precio:parseFloat(document.getElementById('pp2').value)||0,precioMayoreo:parseFloat(document.getElementById('ppm').value)||0,costo:costoFinal,stock:stockFinal,stockMin:stockMinFinal,categoria:document.getElementById('pcat-sel').value||'',granel:document.getElementById('p-granel')?.checked||false,sinInventario:document.getElementById('p-sin-inv')?.checked||false,
+  const data={nombre,codigo,controlaStock:controlaStockForm,talla:(document.getElementById('ptalla')?.value||'').trim().toUpperCase(),precio:parseFloat(document.getElementById('pp2').value)||0,costo:costoFinal,stock:stockFinal,stockMin:stockMinFinal,categoria:document.getElementById('pcat-sel').value||'',granel:document.getElementById('p-granel')?.checked||false,sinInventario:document.getElementById('p-sin-inv')?.checked||false,
     tienePaquete,
     nombreUnidad:tienePaquete?(document.getElementById('p-unidad-nombre').value.trim()||'Unidad'):'',
     codigoUnidad:tienePaquete?document.getElementById('p-unidad-codigo').value.trim().toUpperCase():'',
@@ -7235,7 +7231,6 @@ function rInv(){
         +'<td>'+(p.categoria?'<span class="badge bb">'+p.categoria+'</span>':'<span style="color:var(--t2)">—</span>')+'</td>'
         +'<td>'+fmt(p.costo)+'</td>'
         +'<td>'+fmt(p.precio)+'</td>'
-        +'<td>'+(p.precioMayoreo>0?fmt(p.precioMayoreo):'<span style="color:var(--t2)">—</span>')+'</td>'
         +'<td style="color:var(--t2)">'+stockLabel+'</td>'
         +'<td style="color:var(--t2)">—</td>'
         +'<td><span class="badge bb">'+label+'</span></td>'
@@ -7254,7 +7249,6 @@ function rInv(){
       +'<td>'+(p.categoria?'<span class="badge bb">'+p.categoria+'</span>':'<span style="color:var(--t2)">—</span>')+'</td>'
       +'<td>'+fmt(p.costo)+'</td>'
       +'<td>'+fmt(p.precio)+'</td>'
-      +'<td>'+(p.precioMayoreo>0?fmt(p.precioMayoreo):'<span style="color:var(--t2)">—</span>')+'</td>'
       +'<td style="'+stockColor+'">'+(granelControla(p)?fmtKg(p.stock):p.stock+' unid.')+desglosePaquete+'</td>'
       +'<td style="color:var(--t2)">'+(granelControla(p)?fmtKg(p.stockMin):p.stockMin+' unid.')+'</td>'
       +'<td><span class="badge '+badge+'">'+estado2+'</span></td>'
@@ -7988,18 +7982,20 @@ function imprimirTicketHistorial(ventaId){
     });
     lines.push({separator:true});
     const propina=v.propina||0;
-    if(propina>0){
+    const descR=v.descuento||0;
+    if(propina>0||descR>0){
       lines.push({type:'left',text:padLineToWidth('Subtotal:',fmt(total))});
-      lines.push({type:'left',text:padLineToWidth('+ Propina:',fmt(propina))});
+      if(descR>0)lines.push({type:'left',text:padLineToWidth('- Descuento:',fmt(descR))});
+      if(propina>0)lines.push({type:'left',text:padLineToWidth('+ Propina:',fmt(propina))});
       lines.push({separator:true});
-      lines.push({type:'left',text:padLineToWidth('TOTAL:',fmt(total+propina)),bold:true,totalBig:true});
+      lines.push({type:'left',text:padLineToWidth('TOTAL:',fmt(total-descR+propina)),bold:true,totalBig:true});
     } else {
       lines.push({type:'left',text:padLineToWidth('TOTAL:',fmt(total)),bold:true,totalBig:true});
     }
     if(cfg.metodo!==false)lines.push({type:'left',text:'METODO: '+v.metodo.toUpperCase(),bold:true});
     notaLineasTicket(v.nota).forEach(l=>lines.push(l));
     if(v.metodo==='Efectivo'&&v.entrega>0){
-      const totalConPropinaR=total+propina;
+      const totalConPropinaR=total-descR+propina;
       lines.push({type:'left',text:padLineToWidth('Recibido:',fmt(v.entrega))});
       lines.push({type:'left',text:padLineToWidth('Vuelto:',fmt(Math.max(0,v.entrega-totalConPropinaR)))});
     }
@@ -9093,20 +9089,23 @@ const CFG_PANELS={
   ticket:'__TICKET_PANEL__',
   usuarios:'<div class="card">\n              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">\n                <span style="font-size:15px;font-weight:700">Usuarios del sistema</span>\n                <button class="btn btn-p" onclick="abrirNuevoUsuario()">+ Nuevo usuario</button>\n              </div>\n              <div class="user-card">\n                <div class="user-card-avatar admin">👑</div>\n                <div class="user-card-info">\n                  <div class="user-card-name">Administrador</div>\n                  <div class="user-card-perms">Acceso completo a todas las funciones</div>\n                </div>\n                <button class="btn btn-sm" onclick="cambiarPassAdmin()">🔑 Cambiar contraseña</button>\n              </div>\n              <div id="lista-usuarios"></div>\n            </div>',
   respaldo:'<div class="card">\n              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">\n                <div style="background:var(--s2);border-radius:var(--rl);padding:24px;text-align:center">\n                  <div style="font-size:40px;margin-bottom:10px">📤</div>\n                  <div style="font-size:15px;font-weight:700;color:var(--t);margin-bottom:8px">Exportar datos</div>\n                  <div style="font-size:13px;color:var(--t2);margin-bottom:18px;line-height:1.5">Guarda todos los datos en un archivo <strong>.json</strong> en tu computador.</div>\n                  <button class="btn btn-p" onclick="exportarDatos()" style="width:100%">⬇ Descargar respaldo</button>\n                  <div style="font-size:11px;color:var(--t2);margin-top:8px" id="export-fecha"></div>\n                </div>\n                <div style="background:var(--s2);border-radius:var(--rl);padding:24px;text-align:center">\n                  <div style="font-size:40px;margin-bottom:10px">📥</div>\n                  <div style="font-size:15px;font-weight:700;color:var(--t);margin-bottom:8px">Importar datos</div>\n                  <div style="font-size:13px;color:var(--t2);margin-bottom:18px;line-height:1.5">Restaura desde un respaldo. <strong style="color:var(--dn)">Reemplazará todos los datos actuales.</strong></div>\n                  <label style="display:block;width:100%;text-transform:none;letter-spacing:0;font-weight:400;margin:0">\n                    <input type="file" id="import-file" accept=".json" style="display:none" onchange="importarDatos(this)">\n                    <span class="btn btn-w" style="display:block;cursor:pointer;text-align:center">⬆ Seleccionar archivo</span>\n                  </label>\n                </div>\n              </div>\n              <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--b)">\n                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">\n                  <span style="font-size:15px;font-weight:700">🕐 Respaldos automáticos diarios</span>\n                  <div style="display:flex;gap:6px">\n                    <button class="btn btn-sm" onclick="abrirCarpetaDeRespaldos()">📁 Abrir carpeta</button>\n                    <button class="btn btn-sm" onclick="rListaRespaldos()">🔄 Actualizar</button>\n                  </div>\n                </div>\n                <p style="font-size:13px;color:var(--t2);margin-bottom:16px">El sistema guarda una copia automática cada día que abres PuntoPro (los últimos 10 quedan guardados). Si algo sale mal, puedes restaurar cualquiera de estos aquí mismo.</p>\n                <div id="lista-respaldos"><div style="color:var(--t2);font-size:13px">Cargando respaldos...</div></div>\n              </div>\n            </div>',
-editarprecio:'<div class="card">\n  <div style="display:flex;flex-direction:column;gap:12px">\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">\ud83d\udcb5 Propina al cobrar</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Muestra las opciones de propina (5%, 10%, 15%, 20%, otro valor) al cobrar. Si la desactivas no aparecen. Con pago Bold la propina de 1.5% sigue apareciendo porque es obligatoria.</div>\n      </div>\n      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0">\n        <input type="checkbox" id="cfg-propina-toggle" onchange="togglePropinaActiva()" style="width:18px;height:18px;padding:0;cursor:pointer">\n        <span style="font-size:13px;color:var(--t)">Activar</span>\n      </label>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">🔐 Clave para entrar a Configuración</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Pide una clave de 4 dígitos cada vez que alguien abre Configuración (incluido el admin). Escribe la clave, guárdala y deja la casilla activada. Para cambiarla o desactivarla hay que escribir la actual.</div>\n      </div>\n      <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">\n        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400"><input type="checkbox" id="cfg-clave-config-activa" onchange="toggleClaveConfigActiva()" style="width:18px;height:18px;padding:0;cursor:pointer"><span style="font-size:13px;color:var(--t)">Activar</span></label>\n        <input type="password" id="cfg-clave-config" autocomplete="off" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/\\D/g,\'\').slice(0,4)" onkeydown="if(event.keyCode===13){guardarClaveConfig();this.blur()}" placeholder="4 dígitos" style="width:130px;padding:8px 10px;border:1px solid var(--b);border-radius:var(--r);background:var(--s);color:var(--t);font-family:inherit">\n        <button class="btn btn-p btn-sm" onclick="guardarClaveConfig()">💾 Guardar</button>\n      </div>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">🗑 Quitar productos del ticket</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Permite eliminar un producto del ticket (con la × o bajando la cantidad de 1 a 0), vaciar el ticket y cerrar tickets que ya tienen productos. Si la desactivas, solo se podrá subir o bajar la cantidad (mínimo 1).</div>\n      </div>\n      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0"><input type="checkbox" id="cfg-permitir-quitar" onchange="togglePermitirQuitarTicket()" style="width:18px;height:18px;padding:0;cursor:pointer"><span style="font-size:13px;color:var(--t)">Permitir</span></label>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">🚫 Cancelar ventas</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Permite cancelar ventas ya cobradas (venta completa, un producto de ella o un cobro de fiado). Si la desactivas, los botones de cancelar desaparecen.</div>\n      </div>\n      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0"><input type="checkbox" id="cfg-permitir-cancelar" onchange="togglePermitirCancelarVentas()" style="width:18px;height:18px;padding:0;cursor:pointer"><span style="font-size:13px;color:var(--t)">Permitir</span></label>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">📝 Notas en las ventas</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Permite escribir una nota en cada venta ya hecha (por ejemplo "pendiente de devolución") desde el detalle de la venta. La nota también se ve en la lista de ventas. Si la desactivas, las notas guardadas se conservan pero no se muestran.</div>\n      </div>\n      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0"><input type="checkbox" id="cfg-notas-ventas" onchange="toggleNotasVentas()" style="width:18px;height:18px;padding:0;cursor:pointer"><span style="font-size:13px;color:var(--t)">Activar</span></label>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">🔒 Acciones que piden la clave de autorización</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Marca qué acciones piden la clave de cancelación de ventas. Si no hay una clave definida arriba, no se pide nada. Para cambiar estas casillas hay que escribir la clave.</div>\n      </div>\n      <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">\n        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0"><input type="checkbox" id="cfg-clave-acc-cancelar" onchange="toggleClaveAccion(\'cancelar\')" style="width:18px;height:18px;padding:0;cursor:pointer"><span style="font-size:13px;color:var(--t)">Cancelar ventas</span></label>\n        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0"><input type="checkbox" id="cfg-clave-acc-quitar" onchange="toggleClaveAccion(\'quitar\')" style="width:18px;height:18px;padding:0;cursor:pointer"><span style="font-size:13px;color:var(--t)">Quitar productos del ticket</span></label>\n        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0"><input type="checkbox" id="cfg-clave-acc-precio" onchange="toggleClaveAccion(\'precio\')" style="width:18px;height:18px;padding:0;cursor:pointer"><span style="font-size:13px;color:var(--t)">Editar precios</span></label>\n      </div>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">✏️ Editar precio en ventas</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Permite tocar el precio de un producto en el ticket de Ventas y cambiarlo solo para esa venta. El precio guardado del producto no se toca.</div>\n      </div>\n      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0">\n        <input type="checkbox" id="cfg-editar-precio-toggle" onchange="toggleEditarPrecioVentas()" style="width:18px;height:18px;padding:0;cursor:pointer">\n        <span style="font-size:13px;color:var(--t)">Activar</span>\n      </label>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">⚖️ Producto a granel</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Muestra la opción "Producto a granel" al crear/editar productos en Productos → Nuevo producto.</div>\n      </div>\n      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0">\n        <input type="checkbox" id="cfg-habilitar-granel-toggle" onchange="toggleOpcionProducto(\'habilitarGranel\')" style="width:18px;height:18px;padding:0;cursor:pointer">\n        <span style="font-size:13px;color:var(--t)">Activar</span>\n      </label>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">🚫📦 No requiere inventario</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Muestra la opción "No requiere inventario" al crear/editar productos en Productos → Nuevo producto.</div>\n      </div>\n      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0">\n        <input type="checkbox" id="cfg-habilitar-sininv-toggle" onchange="toggleOpcionProducto(\'habilitarSinInventario\')" style="width:18px;height:18px;padding:0;cursor:pointer">\n        <span style="font-size:13px;color:var(--t)">Activar</span>\n      </label>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">🏭 Módulo de Bodega</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Habilita un segundo inventario ("Bodega") para guardar mercancía aparte y pasarla al inventario que se vende cuando quieras. Agrega un botón en Inventario.</div>\n      </div>\n      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0">\n        <input type="checkbox" id="cfg-habilitar-bodega-toggle" onchange="toggleOpcionProducto(\'habilitarBodega\')" style="width:18px;height:18px;padding:0;cursor:pointer">\n        <span style="font-size:13px;color:var(--t)">Activar</span>\n      </label>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">🎁 Vender por paquete</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Permite crear productos con un segundo código para un paquete (ej: "Medio" de cigarrillos = 10 unidades). Agrega la opción al crear/editar productos.</div>\n      </div>\n      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0">\n        <input type="checkbox" id="cfg-habilitar-paquetes-toggle" onchange="toggleOpcionProducto(\'habilitarPaquetes\')" style="width:18px;height:18px;padding:0;cursor:pointer">\n        <span style="font-size:13px;color:var(--t)">Activar</span>\n      </label>\n    </div>\n    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n      <div style="flex:1">\n        <div style="font-size:14px;font-weight:600;color:var(--t)">\ud83d\udd12 Clave para cancelar ventas</div>\n        <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Si escribes una clave, se pedir\u00e1 cada vez que se cancele una venta ya cobrada (o un producto de ella, o un cobro de fiado). D\u00e9jala vac\u00eda para no pedir nada.</div>\n        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:10px 0 0;text-transform:none;letter-spacing:0;font-weight:400">\n          <input type="checkbox" id="cfg-clave-cancelar-admin" onchange="toggleClaveCancelacionAdmin()" style="width:16px;height:16px;padding:0;cursor:pointer">\n          <span style="font-size:12.5px;color:var(--t)">Pedirla tambi\u00e9n al administrador (\u00fatil si todos trabajan con el usuario admin)</span>\n        </label>\n      </div>\n      <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">\n        <input type="password" id="cfg-clave-cancelar" autocomplete="off" inputmode="numeric" maxlength="4" pattern="[0-9]*" oninput="this.value=this.value.replace(/\\D/g,\'\').slice(0,4)" onkeydown="if(event.keyCode===13){guardarClaveCancelacion();this.blur()}" placeholder="4 dígitos" style="width:130px;padding:8px 10px;border:1px solid var(--b);border-radius:var(--r);background:var(--s);color:var(--t);font-family:inherit">\n        <button class="btn btn-p btn-sm" onclick="guardarClaveCancelacion()">\ud83d\udcbe Guardar</button>\n      </div>\n    </div>\n  </div>\n</div>',
+cfgventas:'<div class="card cfg-sw cfg-pcard">\n<div class="cfg-panel-head"><span class="cfg-panel-ic" style="color:#0d9488;background:#e0f5f2"><span style="font-size:24px;line-height:1">🛒</span></span><div><div class="cfg-panel-t">Configuración de ventas</div><div class="cfg-panel-s">Personaliza el funcionamiento del punto de venta.</div></div></div><div class="cfg-divider"></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">💵 Propina al cobrar</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-propina-toggle" onchange="togglePropinaActiva()" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Muestra las opciones de propina (5%, 10%, 15%, 20%, otro valor) al cobrar. Si la desactivas no aparecen. Con pago Bold la propina de 1.5% sigue apareciendo porque es obligatoria.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🏷️ Descuento al cobrar</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-descuento-toggle" onchange="toggleDescuentoActivo()" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Muestra las opciones de descuento (5%, 10%, 15%, 20%, otro valor) al cobrar. Si la desactivas no aparecen y no se puede dar descuentos.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">📝 Notas en las ventas</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-notas-ventas" onchange="toggleNotasVentas()" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Muestra el botón "Agregar nota" dentro del cobro para escribir una nota en la venta (por ejemplo "pendiente de devolución"). La nota se ve en la lista de ventas, en el detalle y en el ticket impreso. Si la desactivas, las notas guardadas se conservan pero no se muestran.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">✏️ Editar precios durante la venta</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-editar-precio-toggle" onchange="toggleEditarPrecioVentas()" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Permite tocar el precio de un producto en el ticket de Ventas y cambiarlo solo para esa venta. El precio guardado del producto no se toca.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🗑 Quitar productos del ticket</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-permitir-quitar" onchange="togglePermitirQuitarTicket()" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Permite eliminar un producto del ticket (con la × o bajando la cantidad de 1 a 0), vaciar el ticket y cerrar tickets que ya tienen productos. Si la desactivas, solo se podrá subir o bajar la cantidad (mínimo 1).</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🚫 Cancelar ventas</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-permitir-cancelar" onchange="togglePermitirCancelarVentas()" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Permite cancelar ventas ya cobradas (venta completa, un producto de ella o un cobro de fiado). Si la desactivas, los botones de cancelar desaparecen.</div></div>\n</div>',
+cfgproductos:'<div class="card cfg-sw cfg-pcard">\n<div class="cfg-panel-head"><span class="cfg-panel-ic" style="color:#0d9488;background:#e0f5f2"><span style="font-size:24px;line-height:1">📦</span></span><div><div class="cfg-panel-t">Productos e inventario</div><div class="cfg-panel-s">Configura cómo se registran y comercializan los productos.</div></div></div><div class="cfg-divider"></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">⚖️ Productos a granel</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-habilitar-granel-toggle" onchange="toggleOpcionProducto(\'habilitarGranel\')" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Muestra la opción "Producto a granel" al crear/editar productos en Productos → Nuevo producto.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🚫📦 Productos sin control de inventario</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-habilitar-sininv-toggle" onchange="toggleOpcionProducto(\'habilitarSinInventario\')" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Muestra la opción "No requiere inventario" al crear/editar productos en Productos → Nuevo producto.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🎁 Venta por paquetes</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-habilitar-paquetes-toggle" onchange="toggleOpcionProducto(\'habilitarPaquetes\')" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Permite crear productos con un segundo código para un paquete (ej: "Medio" de cigarrillos = 10 unidades). Agrega la opción al crear/editar productos.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🏭 Módulo de bodega</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-habilitar-bodega-toggle" onchange="toggleOpcionProducto(\'habilitarBodega\')" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Habilita un segundo inventario ("Bodega") para guardar mercancía aparte y pasarla al inventario que se vende cuando quieras. Agrega un botón en Inventario.</div></div>\n</div>',
+cfgseguridad:'<div class="card cfg-sw cfg-pcard">\n<div class="cfg-panel-head"><span class="cfg-panel-ic" style="color:#7c3aed;background:#f1eafe"><span style="font-size:24px;line-height:1">🔐</span></span><div><div class="cfg-panel-t">Seguridad y permisos</div><div class="cfg-panel-s">Protege las operaciones sensibles del negocio.</div></div></div><div class="cfg-divider"></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🔐 Clave de acceso a configuración</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-clave-config-activa" onchange="toggleClaveConfigActiva()" style="width:18px;height:18px;padding:0;cursor:pointer"></label></div><div class="cfg-info-txt">Pide una clave de 4 dígitos cada vez que alguien abre Configuración (incluido el admin). Escribe la clave, guárdala y deja el interruptor activado. Para cambiarla o desactivarla hay que escribir la actual.</div><div class="cfg-keyrow"><input type="password" id="cfg-clave-config" autocomplete="off" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/\\D/g,\'\').slice(0,4)" onkeydown="if(event.keyCode===13){guardarClaveConfig();this.blur()}" placeholder="4 dígitos" style="width:130px;padding:8px 10px;border:1px solid var(--b);border-radius:var(--r);background:var(--s);color:var(--t);font-family:inherit"><button class="btn btn-p btn-sm" onclick="guardarClaveConfig()">💾 Guardar</button></div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🔒 Clave de autorización de operaciones</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div></div><div class="cfg-info-txt">Clave de 4 dígitos que se pide para las operaciones de abajo. Si la dejas vacía, no se pide nada. Para cambiar uno de los interruptores se te pedirá la clave actual.</div><div class="cfg-keyrow"><input type="password" id="cfg-clave-cancelar" autocomplete="off" inputmode="numeric" maxlength="4" pattern="[0-9]*" oninput="this.value=this.value.replace(/\\D/g,\'\').slice(0,4)" onkeydown="if(event.keyCode===13){guardarClaveCancelacion();this.blur()}" placeholder="4 dígitos" style="width:130px;padding:8px 10px;border:1px solid var(--b);border-radius:var(--r);background:var(--s);color:var(--t);font-family:inherit"><button class="btn btn-p btn-sm" onclick="guardarClaveCancelacion()">\ud83d\udcbe Guardar</button></div></div>\n<div class="cfg-sub">Acciones que requieren autorización:</div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🚫 Cancelar ventas</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-clave-acc-cancelar" onchange="toggleClaveAccion(\'cancelar\')"></label></div><div class="cfg-info-txt">Pide la clave al cancelar una venta ya cobrada, un producto de ella o un cobro de fiado.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">🗑 Quitar productos del ticket</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-clave-acc-quitar" onchange="toggleClaveAccion(\'quitar\')"></label></div><div class="cfg-info-txt">Pide la clave al quitar un producto del ticket, vaciarlo o cerrarlo.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">✏️ Editar precios</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-clave-acc-precio" onchange="toggleClaveAccion(\'precio\')"></label></div><div class="cfg-info-txt">Pide la clave al cambiar el precio de un producto durante la venta.</div></div>\n<div class="cfg-item"><div class="cfg-row"><div class="cfg-row-main"><span class="cfg-row-t">👑 Solicitar clave también al administrador</span><button type="button" class="cfg-info" onclick="cfgInfo(this)" title="Más información">i</button></div><label class="cfg-sw-lbl"><input type="checkbox" id="cfg-clave-cancelar-admin" onchange="toggleClaveCancelacionAdmin()"></label></div><div class="cfg-info-txt">Útil si todos trabajan con el usuario admin. Si está apagado, el administrador no necesita la clave.</div></div>\n</div>',
   restaurante:'<div class="card">\n  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl);margin-bottom:14px">\n    <div style="flex:1">\n      <div style="font-size:14px;font-weight:600;color:var(--t)">\ud83c\udf7d Modo restaurante (mesas)</div>\n      <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Mantiene una cantidad fija de mesas siempre abiertas. Al cobrar, la mesa <strong>no se cierra</strong> \u2014 solo queda vac\u00eda para el siguiente cliente. Las pesta\u00f1as se llaman \"Mesa 1\", \"Mesa 2\"... y se pintan en rojo cuando tienen productos, para ver de un vistazo cu\u00e1les est\u00e1n ocupadas.</div>\n    </div>\n    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0">\n      <input type="checkbox" id="cfg-modo-restaurante-toggle" onchange="toggleModoRestaurante()" style="width:18px;height:18px;padding:0;cursor:pointer">\n      <span style="font-size:13px;color:var(--t)">Activar</span>\n    </label>\n  </div>\n  <div id="cfg-cantidad-mesas-wrap" style="display:none;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n    <div style="flex:1">\n      <div style="font-size:14px;font-weight:600;color:var(--t)">Cantidad de mesas</div>\n      <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Cu\u00e1ntas mesas quieres tener abiertas al mismo tiempo (por defecto 40). Si una mesa tiene un pedido en curso, se mantiene aunque reduzcas este n\u00famero hasta que se vac\u00ede.</div>\n    </div>\n    <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">\n      <input type="number" id="cfg-cantidad-mesas" min="1" max="200" value="40" style="width:80px;padding:8px 10px;border:1px solid var(--b);border-radius:var(--r);background:var(--s);color:var(--t);font-family:inherit;text-align:center;font-weight:700">\n      <button class="btn btn-p btn-sm" onclick="guardarCantidadMesas()">\ud83d\udcbe Guardar</button>\n    </div>\n  </div>\n</div>',
   ropa:'<div class="card">\n  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n    <div style="flex:1">\n      <div style="font-size:14px;font-weight:600;color:var(--t)">👗 Modo tienda de ropa</div>\n      <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Activa lo necesario para una tienda de ropa: el campo <strong>Talla</strong> en cada producto y el bot\u00f3n <strong>Etiquetas</strong> en Productos, para imprimir stickers con c\u00f3digo de barras, talla y precio.</div>\n    </div>\n    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0">\n      <input type="checkbox" id="cfg-etiquetas-toggle" onchange="toggleEtiquetasActiva()" style="width:18px;height:18px;padding:0;cursor:pointer">\n      <span style="font-size:13px;color:var(--t)">Activar</span>\n    </label>\n  </div>\n</div>',
   grupos:'<div class="card">\n  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:var(--s2);border-radius:var(--rl)">\n    <div style="flex:1">\n      <div style="font-size:14px;font-weight:600;color:var(--t)">🧩 Grupos de venta (combos)</div>\n      <div style="font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5">Crea grupos de productos que se venden juntos (por ejemplo un tratamiento de 2 medicamentos). Al escanear o escribir el <strong>código del grupo</strong> en Ventas, se agregan todos sus productos al ticket, el precio es la <strong>suma</strong> de los precios de cada uno y cada producto se descuenta de su propio inventario.</div>\n    </div>\n    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font-weight:400;flex-shrink:0">\n      <input type="checkbox" id="cfg-grupos-toggle" onchange="toggleGruposActivos()" style="width:18px;height:18px;padding:0;cursor:pointer">\n      <span style="font-size:13px;color:var(--t)">Activar</span>\n    </label>\n  </div>\n  <div id="grp-wrap" style="display:none;margin-top:16px">\n    <div id="grp-form-titulo" style="font-size:14px;font-weight:700;color:var(--t);margin-bottom:8px">Nuevo grupo</div>\n    <div class="fr fr2"><div><label>Nombre del grupo</label><input type="text" id="grp-nombre" placeholder="Ej: Matrimonio" autocomplete="off"></div><div><label>Código del grupo</label><input type="text" id="grp-codigo" placeholder="Para escanear o escribir" autocomplete="off" style="text-transform:uppercase"></div></div>\n    <div class="fr fr1"><div><label>Agregar productos al grupo</label><input type="text" id="grp-buscar" placeholder="Buscar producto por nombre o código..." oninput="renderGrpResultados()" autocomplete="off"></div></div>\n    <div id="grp-res"></div>\n    <div id="grp-comp"></div>\n    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px"><button class="btn" onclick="grpCancelarEdicion()">Limpiar</button><button class="btn btn-p" onclick="guardarGrupo()">💾 Guardar grupo</button></div>\n    <div style="margin-top:20px;font-size:14px;font-weight:700;color:var(--t)">Grupos creados</div>\n    <div id="grp-lista"></div>\n  </div>\n</div>',
 };
 
 // Secciones de configuración que solo puede usar el admin
-const CFG_SOLO_ADMIN=['usuarios','respaldo','editarprecio','actividad','restaurante','ropa','grupos'];
+const CFG_SOLO_ADMIN=['usuarios','respaldo','cfgventas','cfgproductos','cfgseguridad','actividad','restaurante','ropa','grupos'];
 function esAdminActual(){return !currentUser||currentUser.role==='admin';}
 function soloAdmin(){
   if(esAdminActual())return true;
   tst('Solo el administrador puede hacer este cambio',false);
   return false;
 }
+function cfgInfo(btn){const t=btn.closest('.cfg-item').querySelector('.cfg-info-txt');if(t)t.classList.toggle('open');}
 function abrirSubvista(panel,titulo){
   if(CFG_SOLO_ADMIN.includes(panel)&&!soloAdmin())return;
   document.getElementById('cfg-menu-main').style.display='none';
@@ -9125,13 +9124,15 @@ function abrirSubvista(panel,titulo){
     const sel=document.getElementById('cfg-ancho-papel');
     if(sel)sel.value=localStorage.getItem('pos_ancho_papel')||'58';
   },50);}
-  if(panel==='editarprecio'){setTimeout(()=>{
+  if(panel==='cfgventas'||panel==='cfgproductos'||panel==='cfgseguridad'){setTimeout(()=>{
     const chk=document.getElementById('cfg-editar-precio-toggle');
     if(chk)chk.checked=!!(db.config&&db.config.permitirEditarPrecio);
     actualizarPlaceholderClaveConfig();
     cargarOpcionesQuitarClave();
     const chkProp=document.getElementById('cfg-propina-toggle');
     if(chkProp)chkProp.checked=propinaActiva();
+    const chkDesc=document.getElementById('cfg-descuento-toggle');
+    if(chkDesc)chkDesc.checked=descuentoActivo();
     const chkGranel=document.getElementById('cfg-habilitar-granel-toggle');
     if(chkGranel)chkGranel.checked=!(db.config&&db.config.habilitarGranel===false);
     const chkSinInv=document.getElementById('cfg-habilitar-sininv-toggle');
@@ -9230,7 +9231,6 @@ function exportarInventarioExcel(){
     'Categoria':p.categoria||'',
     'Precio Costo':p.costo||0,
     'Precio Venta':p.precio||0,
-    'Precio Mayoreo':p.precioMayoreo||0,
     'Stock':p.stock||0,
     'Stock Minimo':p.stockMin||0,
     'A Granel':p.granel?'Si':'No',
@@ -9267,7 +9267,6 @@ function procesarArchivoImportar(input){
         else if(['descripcion','nombre','producto'].includes(norm))mapaColumnas.nombre=h;
         else if(['preciocosto','costo'].includes(norm))mapaColumnas.costo=h;
         else if(['precioventa','precio','preciodeventa'].includes(norm))mapaColumnas.precio=h;
-        else if(['preciomayoreo','mayoreo'].includes(norm))mapaColumnas.precioMayoreo=h;
         else if(['inventario','stock','existencias'].includes(norm))mapaColumnas.stock=h;
         else if(['invminimo','inventariominimo','stockminimo','minimo'].includes(norm))mapaColumnas.stockMin=h;
         else if(['departamento','categoria'].includes(norm))mapaColumnas.categoria=h;
@@ -9285,7 +9284,6 @@ function procesarArchivoImportar(input){
           codigo,nombre,
           costo:parseFloat(fila[mapaColumnas.costo])||0,
           precio:parseFloat(fila[mapaColumnas.precio])||0,
-          precioMayoreo:parseFloat(fila[mapaColumnas.precioMayoreo])||0,
           stock:parseInt(fila[mapaColumnas.stock])||0,
           stockMin:parseInt(fila[mapaColumnas.stockMin])||0,
           categoria
@@ -9347,7 +9345,7 @@ function confirmarImportarProductos(){
     if(f.categoria&&!db.categorias.includes(f.categoria)){db.categorias.push(f.categoria);categoriasCreadas++;}
     db.productos.push({
       id:db.nextPId++,
-      codigo:f.codigo,nombre:f.nombre,precio:f.precio,precioMayoreo:f.precioMayoreo,costo:f.costo,
+      codigo:f.codigo,nombre:f.nombre,precio:f.precio,costo:f.costo,
       stock:f.stock,stockMin:f.stockMin,categoria:f.categoria,
       granel:false,sinInventario:false,tienePaquete:false,
       movimientos:[],fechaCreacion:Date.now()
@@ -9650,7 +9648,7 @@ function editarDesdePanel(){
   const p=db.productos.find(x=>x.id===editProdId);if(!p)return;
   document.getElementById('pei3').value=p.id;
   document.getElementById('edit-inline-nombre-lbl').textContent=p.nombre;
-  ['pn3','pc3','pp3','ppm3','pco3','pst3','psm3'].forEach((f,i)=>document.getElementById(f).value=[p.nombre,p.codigo,p.precio,p.precioMayoreo||0,p.costo,p.stock,p.stockMin][i]);
+  ['pn3','pc3','pp3','pco3','pst3','psm3'].forEach((f,i)=>document.getElementById(f).value=[p.nombre,p.codigo,p.precio,p.costo,p.stock,p.stockMin][i]);
   const grEl=document.getElementById('p-granel3');if(grEl)grEl.checked=!!p.granel;
   const siEl=document.getElementById('p-sin-inv3');if(siEl)siEl.checked=!!p.sinInventario;
   if(p.granel&&!p.sinInventario){document.getElementById('pst3').value=p.controlaStock?p.stock:'';document.getElementById('psm3').value=p.controlaStock?p.stockMin:'';}
@@ -9724,7 +9722,6 @@ function guardarEdicionInline(){
   Object.assign(p,{
     nombre,codigo,controlaStock:controla3,
     precio:parseFloat(document.getElementById('pp3').value)||0,
-    precioMayoreo:parseFloat(document.getElementById('ppm3').value)||0,
     costo:parseFloat(document.getElementById('pco3').value)||0,
     stock:stockF3,
     stockMin:stockMinF3,
@@ -9767,6 +9764,40 @@ function mostrarVueltoEntregar(vuelto,recibido,total){
   _vueltoTimer=setTimeout(ocultarVueltoEntregar,20000);
 }
 // ===== VUELTO =====
+// ===== DESCUENTO =====
+let descuentoActual=0;
+function _subtotalCobro(){return getCart().reduce((s,c)=>s+(c.granel?(c.precioTotal||c.qty*c.precio):c.qty*c.precio),0);}
+function setDescuento(pct){
+  descuentoActual=pct>0?Math.min(_subtotalCobro(),Math.round(_subtotalCobro()*pct/100)):0;
+  document.querySelectorAll('.desc-btn').forEach(b=>b.classList.toggle('active',pct>0&&parseInt(b.dataset.pct)===pct));
+  const inp=document.getElementById('desc-custom');if(inp)inp.value='';
+  actualizarDescuentoResumen();
+}
+function setDescuentoCustom(){
+  let pct=parseFloat(document.getElementById('desc-custom').value)||0;
+  if(pct>100){pct=100;document.getElementById('desc-custom').value='100';}
+  if(pct<0)pct=0;
+  descuentoActual=pct>0?Math.min(_subtotalCobro(),Math.round(_subtotalCobro()*pct/100)):0;
+  document.querySelectorAll('.desc-btn').forEach(b=>b.classList.remove('active'));
+  actualizarDescuentoResumen();
+}
+function actualizarDescuentoResumen(){
+  const el=document.getElementById('desc-resumen');
+  if(el)el.textContent=descuentoActual>0?'-'+fmt(descuentoActual):'-$0';
+  const row=document.getElementById('cobrar-desc-row');
+  const val=document.getElementById('cobrar-desc-val');
+  if(row)row.style.display=descuentoActual>0?'flex':'none';
+  if(val)val.textContent='-'+fmt(descuentoActual);
+  actualizarPropinaResumen(); // recalcula el total final, el vuelto y el pago dividido
+}
+function resetDescuento(){
+  descuentoActual=0;
+  document.querySelectorAll('.desc-btn').forEach(b=>b.classList.remove('active'));
+  const inp=document.getElementById('desc-custom');if(inp)inp.value='';
+  const el=document.getElementById('desc-resumen');if(el)el.textContent='-$0';
+  const row=document.getElementById('cobrar-desc-row');if(row)row.style.display='none';
+}
+
 // ===== PROPINA =====
 let propinaActual=0;
 function getPropina(){return propinaActual;}
@@ -9820,7 +9851,7 @@ function actualizarPropinaResumen(){
   const subtotal=cart.reduce((s,c)=>s+(c.granel?(c.precioTotal||c.qty*c.precio):c.qty*c.precio),0);
   if(row){row.style.display=propinaActual>0?'flex':'none';}
   if(propVal)propVal.textContent=fmt(propinaActual);
-  if(totalEl)totalEl.textContent=fmt(subtotal+propinaActual);
+  if(totalEl)totalEl.textContent=fmt(subtotal-descuentoActual+propinaActual);
   calcVuelto();
   if(pagoDivididoActivo)actualizarResumenPagoDividido();
 }
@@ -9859,7 +9890,7 @@ function resetPropina(){
 function calcVuelto(){
   const cart=getCart();
   const subtotal=cart.reduce((s,c)=>s+(c.granel?(c.precioTotal||c.qty*c.precio):c.qty*c.precio),0);
-  const total=subtotal+propinaActual;
+  const total=subtotal-descuentoActual+propinaActual;
   const entrega=parseFloat(document.getElementById('vuelto-input').value)||0;
   const vuelto=entrega-total;
   const el=document.getElementById('vuelto-val');
@@ -10258,7 +10289,7 @@ function filtrarProveedoresPago(q){
   }
   if(!q.trim()){dd.style.display='none';provPagoId=null;return;}
   const matches=(db.proveedores||[]).filter(p=>p.nombre.toLowerCase().includes(q.toLowerCase())).slice(0,8);
-  if(!matches.length){dd.innerHTML='<div style="padding:10px 14px;font-size:13px;color:var(--t2)">Sin resultados. Crea el proveedor primero.</div>';dd.style.display='block';return;}
+  if(!matches.length){dd.innerHTML='<div style="padding:10px 14px;font-size:13px;color:var(--t2)">Sin resultados. Puedes escribir el nombre y registrar el pago sin crear el proveedor.</div>';dd.style.display='block';return;}
   dd.innerHTML=matches.map(function(p){return'<div class="dd-item-kb" data-pid="'+p.id+'" onclick="seleccionarProvPago('+p.id+',this.dataset.n)" data-n="'+p.nombre.replace(/"/g,'&quot;')+'" style="padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--b);font-size:13px;font-weight:600" onmouseover="this.style.background=\'var(--s2)\'" onmouseout="this.style.background=this.classList.contains(\'kb-sel\')?\'\':\'\'">'+p.nombre+'</div>';}).join('');
   dd.style.display='block';
 }
@@ -10621,7 +10652,8 @@ function registrarPagoProv(){
     const existente=db.proveedores.find(p=>p.nombre.toLowerCase()===nombre.toLowerCase());
     if(existente){
       provPagoId=existente.id;
-    } else {
+    } else if(esFiadoProvCheck){
+      // Solo el fiado necesita un proveedor guardado (para llevar la deuda); el pago normal no
       if(!db.nextProvId)db.nextProvId=1;
       const nuevoProv={id:db.nextProvId++,nombre,tel:'',nota:'',productos:[]};
       db.proveedores.push(nuevoProv);
@@ -11391,6 +11423,17 @@ function mostrarMsgDespedida(nombre){
   el.style.display='flex';el.classList.remove('salida');
 }
 
+// Enter salta la ventana de bienvenida del inicio (la de despedida no, para no cerrar sesión sin querer)
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'||e.repeat)return;
+  const el=document.getElementById('msg-bienvenida');
+  if(!el||el.style.display==='none'||el.classList.contains('salida'))return;
+  if(!msgEsEntrada)return;
+  const btn=document.getElementById('msg-btn');
+  if(!btn||btn.disabled)return;
+  e.preventDefault();e.stopPropagation();
+  btn.click();
+},true);
 function cerrarMsgBienvenida(){
   const el=document.getElementById('msg-bienvenida');
   el.classList.add('salida');
@@ -11810,9 +11853,22 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
   }
   window.reiniciarDemo=function(){
     if(!confirm('¿Reiniciar la demo? Se borrará lo que hayas probado y volverán los datos de ejemplo.'))return;
-    try{localStorage.removeItem(K);localStorage.removeItem('demo_seed_v4');localStorage.removeItem(TK_KEY);}catch(e){}
+    try{localStorage.removeItem(K);localStorage.removeItem('demo_seed_v4');localStorage.removeItem(TK_KEY);localStorage.setItem('demo_inicio',String(Date.now()));}catch(e){}
     location.reload();
   };
+  /* ---------- Prueba de 24 horas: pasado ese tiempo se borran los datos ---------- */
+  const PRUEBA_MS=24*60*60*1000;
+  function inicioPrueba(){try{return parseInt(localStorage.getItem('demo_inicio'))||0;}catch(e){return 0;}}
+  function borrarPorVencimiento(){
+    try{localStorage.removeItem(K);localStorage.removeItem('demo_seed_v4');localStorage.removeItem(TK_KEY);
+        localStorage.setItem('demo_inicio',String(Date.now()));localStorage.setItem('demo_vencio','1');}catch(e){}
+    location.reload();
+  }
+  (function(){
+    const ini=inicioPrueba(),ahora=Date.now();
+    if(!ini){try{localStorage.setItem('demo_inicio',String(ahora));}catch(e){}}
+    else if(ahora-ini>=PRUEBA_MS||ahora<ini-60000){borrarPorVencimiento();}
+  })();
   if(!localStorage.getItem('demo_seed_v4')||!(db.productos||[]).length){
     try{seedDemo();}catch(e){console.error(e);}
   }
@@ -11832,9 +11888,23 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
   document.addEventListener('DOMContentLoaded',recortar);
   /* ---------- Etiqueta DEMO + reinicio ---------- */
   const strip=document.createElement('div');strip.id='demo-strip';
-  strip.innerHTML='<span>MODO DEMO · datos de ejemplo</span><button onclick="reiniciarDemo()">↺ Reiniciar</button>';
+  strip.innerHTML='<span id="demo-txt">MODO PRUEBA</span><button onclick="reiniciarDemo()">↺ Reiniciar</button>';
   const appEl=document.getElementById('app');appEl.insertBefore(strip,appEl.firstChild);
   document.title='PuntoPro Demo';
+  function tickPrueba(){
+    const rest=PRUEBA_MS-(Date.now()-inicioPrueba());
+    if(rest<=0){borrarPorVencimiento();return;}
+    const h=Math.floor(rest/3600000),m=Math.floor((rest%3600000)/60000);
+    const t=document.getElementById('demo-txt');
+    if(t)t.textContent='PRUEBA · los datos se borran en '+(h>0?h+' h '+m+' min':m+' min');
+    if(rest<=2*3600000)strip.style.background='#b45309';
+  }
+  tickPrueba();setInterval(tickPrueba,30000);
+  document.addEventListener('visibilitychange',tickPrueba);
+  if(localStorage.getItem('demo_vencio')){
+    try{localStorage.removeItem('demo_vencio');}catch(e){}
+    setTimeout(()=>{try{tst('Tu prueba de 24 horas terminó: los datos se borraron',false);}catch(e){}},1500);
+  }
   /* ---------- Entrada directa (sin login) ---------- */
   function entrar(){
     try{
