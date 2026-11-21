@@ -11732,6 +11732,12 @@ setInterval(function(){saveTickets();},30000);
 <div id="name-search-dropdown" style="z-index:9999;position:fixed"></div>
 <script>(function(){var m=document.querySelector('meta[name="viewport"]');if(!m){m=document.createElement("meta");m.name="viewport";document.head.appendChild(m);}m.id="demo-viewport";m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover";})();</script>
 <style id="demo-css">
+#guia-fab{position:fixed;left:10px;bottom:46px;z-index:99990;width:46px;height:46px;border-radius:50%;background:#0e7490;color:#fff;border:2px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.4);font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:none;user-select:none;animation:fabPulse 2.2s infinite}
+#guia-fab small{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);background:#0e7490;color:#fff;font:700 9px Inter,system-ui,sans-serif;padding:1px 6px;border-radius:8px;white-space:nowrap}
+@keyframes fabPulse{0%{box-shadow:0 0 0 0 rgba(14,116,144,.55),0 4px 14px rgba(0,0,0,.4)}70%{box-shadow:0 0 0 14px rgba(14,116,144,0),0 4px 14px rgba(0,0,0,.4)}100%{box-shadow:0 0 0 0 rgba(14,116,144,0),0 4px 14px rgba(0,0,0,.4)}}
+#tour-tip .tt-btns2{display:flex;gap:6px;margin-top:6px}
+#tour-tip button.tt-otra{flex:1;background:#e0f2fe;color:#0c4a6e;border:0;border-radius:9px;padding:8px;font:700 12.5px Inter,system-ui,sans-serif;cursor:pointer}
+#tour-menu button.tm-opt.hecha::after{content:'✓ Hecha';margin-left:auto;font-size:11px;color:#16a34a;font-weight:700}
 #demo-wa-btn{background:#16a34a!important;color:#fff!important;border-color:transparent!important;margin-right:6px}
 #tour-tip button.tt-wa,#tour-menu button.tm-wa,#demo-bienv button.db-wa{display:block;width:100%;margin-top:7px;background:#16a34a;color:#fff;border:0;border-radius:10px;padding:9px;font:700 13.5px Inter,system-ui,sans-serif;cursor:pointer}
 #demo-guia-btn{background:#0e7490!important;color:#fff!important;border-color:transparent!important;margin-right:6px}
@@ -12010,9 +12016,12 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
     ]}
   };
   let tour=null,tourTimer=null;
+  let hechas={};try{hechas=JSON.parse(localStorage.getItem('demo_guias')||'{}');}catch(e){}
   function tourFin(){
+    if(tour&&tour.key&&tour.i>=tour.pasos.length-1){hechas[tour.key]=1;try{localStorage.setItem('demo_guias',JSON.stringify(hechas));}catch(e){}}
     if(tourTimer)clearInterval(tourTimer);tourTimer=null;tour=null;
     ['tour-hl','tour-tip'].forEach(i=>{const e=$(i);if(e)e.remove();});
+    fabOcultar(false);
   }
   function tourPaso(){
     const st=tour.pasos[tour.i];
@@ -12034,7 +12043,7 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
       tip.innerHTML='<div class="tt-top"><span>'+tour.titulo+' · '+(tour.i+1)+'/'+tour.pasos.length+'</span><button class="tt-x" onclick="window.__tourFin()">Salir ✕</button></div>'
         +'<div class="tt-msg">'+st.msg+'</div>'
         +'<div class="tt-btns"><button class="tt-next'+(st.wait?' alt':'')+'" onclick="window.__tourNext()">'+(ultimo?'Terminar':(st.wait?'Saltar paso →':'Siguiente →'))+'</button></div>'
-        +(ultimo?'<button class="tt-wa" onclick="window.__wa()">💬 Quiero comprar PuntoPro</button>':'');
+        +(ultimo?'<button class="tt-otra" style="display:block;width:100%;margin-top:6px" onclick="window.__tourFin();window.demoGuiaMenu()">🎓 Hacer otra guía</button><button class="tt-wa" onclick="window.__wa()">💬 Quiero comprar PuntoPro</button>':'');
     }
     let r=null;
     if(st.sel){const el=document.querySelector(st.sel);
@@ -12062,7 +12071,7 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
   window.__tourNext=tourNext;window.__tourFin=tourFin;
   function tourIniciar(k){
     tourFin();const m=$('tour-menu');if(m)m.remove();const b=$('demo-bienv');if(b)b.remove();
-    tour=Object.assign({i:0},TOURS[k]);
+    tour=Object.assign({i:0,key:k},TOURS[k]);fabOcultar(true);
     tourPaso();
     tourTimer=setInterval(()=>{
       if(!tour)return;
@@ -12077,14 +12086,24 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
     if($('tour-menu'))return;tourFin();
     const m=document.createElement('div');m.id='tour-menu';
     m.innerHTML='<div class="tm-card"><h3>🎓 Guía paso a paso</h3><div class="tm-sub">Elige qué quieres aprender. Te voy mostrando dónde tocar.</div>'
-      +'<button class="tm-opt" onclick="window.__tourIni(\'venta\')"><span class="e">🛒</span><span>Hacer una venta<small>Busca, agrega y cobra un producto</small></span></button>'
-      +'<button class="tm-opt" onclick="window.__tourIni(\'producto\')"><span class="e">📦</span><span>Crear un producto<small>Nombre, costo, precio e inventario</small></span></button>'
-      +'<button class="tm-opt" onclick="window.__tourIni(\'recorrido\')"><span class="e">🧭</span><span>Conocer el sistema<small>Inventario, clientes, corte y reportes</small></span></button>'
+      +'<button class="tm-opt'+(hechas.venta?' hecha':'')+'" onclick="window.__tourIni(\'venta\')"><span class="e">🛒</span><span>Hacer una venta<small>Busca, agrega y cobra un producto</small></span></button>'
+      +'<button class="tm-opt'+(hechas.producto?' hecha':'')+'" onclick="window.__tourIni(\'producto\')"><span class="e">📦</span><span>Crear un producto<small>Nombre, costo, precio e inventario</small></span></button>'
+      +'<button class="tm-opt'+(hechas.recorrido?' hecha':'')+'" onclick="window.__tourIni(\'recorrido\')"><span class="e">🧭</span><span>Conocer el sistema<small>Inventario, clientes, corte y reportes</small></span></button>'
       +'<button class="tm-wa" onclick="window.__wa()">💬 Quiero comprar PuntoPro</button>'
       +'<button class="tm-cerrar" onclick="document.getElementById(\'tour-menu\').remove()">Explorar por mi cuenta</button></div>';
     document.body.appendChild(m);
   };
   window.__tourIni=tourIniciar;
+  function fabOcultar(v){const f=$('guia-fab');if(f)f.style.display=v?'none':'flex';}
+  (function(){
+    const f=document.createElement('div');f.id='guia-fab';f.innerHTML='🎓<small>Guía</small>';
+    document.body.appendChild(f);
+    let sx,sy,ox,oy,mov=false,act=false;
+    f.addEventListener('pointerdown',e=>{act=true;mov=false;sx=e.clientX;sy=e.clientY;const r=f.getBoundingClientRect();ox=r.left;oy=r.top;try{f.setPointerCapture(e.pointerId);}catch(_){}});
+    f.addEventListener('pointermove',e=>{if(!act)return;const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.abs(dx)+Math.abs(dy)>8)mov=true;
+      if(mov){f.style.left=Math.max(0,Math.min(innerWidth-46,ox+dx))+'px';f.style.top=Math.max(0,Math.min(innerHeight-46,oy+dy))+'px';f.style.bottom='auto';}});
+    f.addEventListener('pointerup',()=>{act=false;if(!mov)window.demoGuiaMenu();});
+  })();
   (function(){const sb=$('demo-strip');if(!sb)return;
     const b=document.createElement('button');b.id='demo-guia-btn';b.textContent='🎓 Guía';b.onclick=window.demoGuiaMenu;
     const wa=document.createElement('button');wa.id='demo-wa-btn';wa.textContent='💬 Comprar';wa.onclick=window.__wa;
