@@ -11732,6 +11732,8 @@ setInterval(function(){saveTickets();},30000);
 <div id="name-search-dropdown" style="z-index:9999;position:fixed"></div>
 <script>(function(){var m=document.querySelector('meta[name="viewport"]');if(!m){m=document.createElement("meta");m.name="viewport";document.head.appendChild(m);}m.id="demo-viewport";m.content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover";})();</script>
 <style id="demo-css">
+#demo-wa-btn{background:#16a34a!important;color:#fff!important;border-color:transparent!important;margin-right:6px}
+#tour-tip button.tt-wa,#tour-menu button.tm-wa,#demo-bienv button.db-wa{display:block;width:100%;margin-top:7px;background:#16a34a;color:#fff;border:0;border-radius:10px;padding:9px;font:700 13.5px Inter,system-ui,sans-serif;cursor:pointer}
 #demo-guia-btn{background:#0e7490!important;color:#fff!important;border-color:transparent!important;margin-right:6px}
 #tour-hl{position:fixed;z-index:100000;pointer-events:none;border-radius:10px;box-shadow:0 0 0 100vmax rgba(15,23,42,.62);outline:3px solid #fbbf24;transition:all .2s ease}
 #tour-hl.full{inset:0!important;width:auto!important;height:auto!important;outline:none;border-radius:0}
@@ -11968,6 +11970,12 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
     }catch(e){console.error(e);}
   }
 
+  /* ---------- WhatsApp para comprar ---------- */
+  window.__wa=function(){
+    const url='https://wa.me/573209923732?text='+encodeURIComponent('Hola, estuve probando la demo de PuntoPro y me interesa comprar el sistema. ¿Me das más información?');
+    let w=null;try{w=window.open(url,'_blank');}catch(e){}
+    if(!w)location.href=url;
+  };
   /* ---------- Guía paso a paso ---------- */
   const $=id=>document.getElementById(id);
   const nav_=v=>{try{nav(v);}catch(e){}};
@@ -12025,7 +12033,8 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
       tip.dataset.i=String(tour.i);
       tip.innerHTML='<div class="tt-top"><span>'+tour.titulo+' · '+(tour.i+1)+'/'+tour.pasos.length+'</span><button class="tt-x" onclick="window.__tourFin()">Salir ✕</button></div>'
         +'<div class="tt-msg">'+st.msg+'</div>'
-        +'<div class="tt-btns"><button class="tt-next'+(st.wait?' alt':'')+'" onclick="window.__tourNext()">'+(ultimo?'Terminar':(st.wait?'Saltar paso →':'Siguiente →'))+'</button></div>';
+        +'<div class="tt-btns"><button class="tt-next'+(st.wait?' alt':'')+'" onclick="window.__tourNext()">'+(ultimo?'Terminar':(st.wait?'Saltar paso →':'Siguiente →'))+'</button></div>'
+        +(ultimo?'<button class="tt-wa" onclick="window.__wa()">💬 Quiero comprar PuntoPro</button>':'');
     }
     let r=null;
     if(st.sel){const el=document.querySelector(st.sel);
@@ -12071,14 +12080,16 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
       +'<button class="tm-opt" onclick="window.__tourIni(\'venta\')"><span class="e">🛒</span><span>Hacer una venta<small>Busca, agrega y cobra un producto</small></span></button>'
       +'<button class="tm-opt" onclick="window.__tourIni(\'producto\')"><span class="e">📦</span><span>Crear un producto<small>Nombre, costo, precio e inventario</small></span></button>'
       +'<button class="tm-opt" onclick="window.__tourIni(\'recorrido\')"><span class="e">🧭</span><span>Conocer el sistema<small>Inventario, clientes, corte y reportes</small></span></button>'
+      +'<button class="tm-wa" onclick="window.__wa()">💬 Quiero comprar PuntoPro</button>'
       +'<button class="tm-cerrar" onclick="document.getElementById(\'tour-menu\').remove()">Explorar por mi cuenta</button></div>';
     document.body.appendChild(m);
   };
   window.__tourIni=tourIniciar;
   (function(){const sb=$('demo-strip');if(!sb)return;
     const b=document.createElement('button');b.id='demo-guia-btn';b.textContent='🎓 Guía';b.onclick=window.demoGuiaMenu;
-    const rb=sb.querySelector('button');sb.insertBefore(b,rb);
-    const w=document.createElement('span');w.style.cssText='display:flex;align-items:center';w.appendChild(b);w.appendChild(rb);sb.appendChild(w);})();
+    const wa=document.createElement('button');wa.id='demo-wa-btn';wa.textContent='💬 Comprar';wa.onclick=window.__wa;
+    const rb=sb.querySelector('button');sb.insertBefore(b,rb);sb.insertBefore(wa,rb);
+    const w=document.createElement('span');w.style.cssText='display:flex;align-items:center';w.appendChild(b);w.appendChild(wa);w.appendChild(rb);sb.appendChild(w);})();
 
   window.addEventListener('load',()=>setTimeout(entrar,400));
   /* ---------- Bienvenida a la prueba (una vez por período de prueba) ---------- */
@@ -12094,6 +12105,7 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
       +'<p>Explora con total libertad: registra ventas, revisa el corte, los reportes y mucho más. Todo con datos de ejemplo para que pruebes sin miedo.</p>'
       +'<p class="db-nota">⏳ Tienes <strong>24 horas</strong> para probarlo. Pasado ese tiempo, la información se borra.</p>'
       +'<button onclick="document.getElementById(\'demo-bienv\').remove();window.demoGuiaMenu()">🎓 Guíame paso a paso</button>'
+      +'<button class="db-wa" onclick="window.__wa()">💬 Quiero comprar PuntoPro</button>'
       +'<button class="db-sec" onclick="document.getElementById(\'demo-bienv\').remove()">Explorar por mi cuenta</button></div>';
     document.body.appendChild(ov);
   }
