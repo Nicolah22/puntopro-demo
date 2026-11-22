@@ -11741,7 +11741,7 @@ setInterval(function(){saveTickets();},30000);
 #demo-aviso button.db-sec{background:none;color:#6b7280;font-size:13px;font-weight:600}
 #demo-strip #demo-wa-btn{background:#16a34a!important;color:#fff!important;font-size:12px!important;padding:3px 12px!important;animation:waPulse 1.8s infinite}
 @keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.8)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
-@media (max-height:520px) and (orientation:landscape){#demo-strip #demo-wa-btn{font-size:11px!important;padding:0 11px!important}}
+@media (max-height:520px) and (orientation:landscape){#demo-strip{height:26px!important}#demo-strip #demo-wa-btn{font-size:11px!important;padding:0 12px!important;height:21px!important;touch-action:manipulation}#demo-strip button{height:21px!important}}
 #fab-stack{position:fixed;left:10px;bottom:40px;z-index:99990;display:flex;flex-direction:column;align-items:center;gap:20px;touch-action:none}
 #wa-fab{position:relative;width:46px;height:46px;border-radius:50%;background:#16a34a;color:#fff;border:2px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.4);font-size:23px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;animation:waFab 1.8s infinite}
 #wa-fab small{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);background:#16a34a;color:#fff;font:700 9px Inter,system-ui,sans-serif;padding:1px 6px;border-radius:8px;white-space:nowrap}
@@ -11998,6 +11998,8 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
   /* ---------- WhatsApp para comprar ---------- */
   window.__wa=function(){
     const url='https://wa.me/573209923732?text='+encodeURIComponent('Hola, estuve probando la demo de PuntoPro y me interesa comprar el sistema. ¿Me das más información?');
+    let nativa=false;try{nativa=!!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform());}catch(e){}
+    if(nativa){location.href=url;return;}   // en el APK, Android abre WhatsApp por su cuenta
     let w=null;try{w=window.open(url,'_blank');}catch(e){}
     if(!w)location.href=url;
   };
@@ -12131,10 +12133,13 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
     const st=document.createElement('div');st.id='fab-stack';
     st.innerHTML='<div id="wa-fab">💬<small>Comprar</small></div><div id="guia-fab">🎓<small>Guía</small></div>';
     document.body.appendChild(st);
+    let movido=false;
+    function ubicar(){if(movido)return;const a=$('app');const l=a?a.getBoundingClientRect().left:0;st.style.left=(Math.max(0,l)+16)+'px';}
+    ubicar();setTimeout(ubicar,500);setTimeout(ubicar,2000);addEventListener('resize',ubicar);
     let sx,sy,ox,oy,mov=false,act=false,dest=null;
     st.addEventListener('pointerdown',e=>{act=true;mov=false;dest=e.target.closest('#wa-fab,#guia-fab');sx=e.clientX;sy=e.clientY;const r=st.getBoundingClientRect();ox=r.left;oy=r.top;try{st.setPointerCapture(e.pointerId);}catch(_){}});
     st.addEventListener('pointermove',e=>{if(!act)return;const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.abs(dx)+Math.abs(dy)>8)mov=true;
-      if(mov){st.style.left=Math.max(0,Math.min(innerWidth-50,ox+dx))+'px';st.style.top=Math.max(0,Math.min(innerHeight-st.offsetHeight,oy+dy))+'px';st.style.bottom='auto';}});
+      if(mov){movido=true;st.style.left=Math.max(0,Math.min(innerWidth-50,ox+dx))+'px';st.style.top=Math.max(0,Math.min(innerHeight-st.offsetHeight,oy+dy))+'px';st.style.bottom='auto';}});
     st.addEventListener('pointerup',()=>{act=false;if(mov||!dest)return;if(dest.id==='wa-fab')window.__wa();else window.demoGuiaMenu();});
   })();
   (function(){const sb=$('demo-strip');if(!sb)return;
