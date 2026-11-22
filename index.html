@@ -11980,7 +11980,7 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
   setTimeout(tickPrueba,1500);setInterval(tickPrueba,30000);
   document.addEventListener('visibilitychange',tickPrueba);
   if(localStorage.getItem('demo_vencio')){
-    try{localStorage.removeItem('demo_vencio');}catch(e){}
+    window.__vencio=true;try{localStorage.removeItem('demo_vencio');}catch(e){}
     setTimeout(()=>window.__avisoWA('fin'),1200);
   }
   /* ---------- Entrada directa (sin login) ---------- */
@@ -12151,10 +12151,7 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
   window.addEventListener('load',()=>setTimeout(entrar,400));
   /* ---------- Bienvenida a la prueba (una vez por período de prueba) ---------- */
   function bienvenidaPrueba(){
-    let visto='';try{visto=localStorage.getItem('demo_bienv')||'';}catch(e){}
-    const marca=String(inicioPrueba());
-    if(visto===marca)return;
-    try{localStorage.setItem('demo_bienv',marca);}catch(e){}
+    if(window.__vencio)return;   // si la prueba acaba de vencer, se muestra el aviso de fin en su lugar
     const ov=document.createElement('div');ov.id='demo-bienv';
     ov.innerHTML='<div class="db-card"><div class="db-ico">🛒</div>'
       +'<h2>¡Bienvenido a la prueba de PuntoPro!</h2>'
